@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D2C Website Panel — Visual BRD (Light UI + Diagrams + Stable Nav)</title>
+
+  <!-- =========================================================
+    FULL BRD (Light, Professional, Figma-Ready)
+    Updates included:
+    ✅ Light theme (premium)
+    ✅ Flow “diagrams” (node + arrows) for each module
+    ✅ Default landing: E-commerce (explicit)
+    ✅ Sidebar scroll highlight: FIXED (no flicker)
+       - Center-line detection + hysteresis + rAF throttle
+  ========================================================== -->
+
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --bg2:#eef3fb;
+      --card:#ffffff;
+      --card2:#fbfcff;
+      --stroke: rgba(15,23,42,.12);
+      --stroke2: rgba(15,23,42,.18);
+
+      --text:#0f172a;
+      --muted: rgba(15,23,42,.72);
+      --muted2: rgba(15,23,42,.55);
+
+      --accent:#2563eb;
+      --accent2:#16a34a;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+
+      --shadow: 0 14px 40px rgba(15,23,42,.10);
+      --shadow2: 0 10px 26px rgba(15,23,42,.08);
+
+      --radius: 16px;
+      --radius2: 22px;
+
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 520px at 10% 0%, rgba(37,99,235,.12), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(22,163,74,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+
+    a{color:inherit; text-decoration:none}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 330px 1fr;
+      gap: 16px;
+      padding: 16px;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================== */
+    .side{
+      position: sticky;
+      top: 14px;
+      align-self: start;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.82);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .side .brand{
+      padding: 14px 14px 10px;
+      border-bottom:1px solid var(--stroke);
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(37,99,235,.95), rgba(22,163,74,.85));
+      display:grid;place-items:center;
+      box-shadow: 0 10px 24px rgba(37,99,235,.18);
+      font-weight: 900;
+      color:#fff;
+      letter-spacing:.5px;
+      user-select:none;
+    }
+    /* ===== Brand Header ===== */
+    .brand{
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,.88)
+      );
+    }
+
+    /* Logo wrapper — NO background */
+    .brand-logo{
+      width: 54px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Actual BOS logo */
+    .brand-logo img{
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Text */
+    .brand-text h1{
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .2px;
+    }
+
+    .nav{
+      padding: 10px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      max-height: calc(100vh - 118px);
+      overflow:auto;
+      scroll-behavior:smooth;
+    }
+    .nav a{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      transition: .12s ease;
+      font-size: 13px;
+      position:relative;
+      background: transparent;
+    }
+    .nav a:hover{
+      background: rgba(37,99,235,.06);
+      border-color: rgba(37,99,235,.18);
+      color: var(--text);
+    }
+    .nav a.active{
+      background: rgba(37,99,235,.12);
+      border-color: rgba(37,99,235,.40);
+      color: var(--text);
+      box-shadow: var(--shadow2);
+    }
+    .nav a.active::before{
+      content:"";
+      position:absolute;
+      left: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 66%;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .pill{
+      font-size:11px;
+      color: rgba(15,23,42,.72);
+      border: 1px solid var(--stroke);
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      white-space:nowrap;
+      user-select:none;
+    }
+
+    /* =========================
+       MAIN LAYOUT
+    ========================== */
+    .main{display:flex; flex-direction:column; gap: 14px;}
+
+    .hero, .section{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.86);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero{
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(850px 260px at 14% 0%, rgba(37,99,235,.12), transparent 60%),
+        radial-gradient(750px 260px at 76% 0%, rgba(22,163,74,.10), transparent 62%);
+      pointer-events:none;
+      opacity: 1;
+    }
+    .hero > *{position:relative; z-index:1}
+
+    .hero .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .hero h2{margin:0; font-size: 18px; letter-spacing:.2px;}
+    .hero p{
+      margin:8px 0 0;
+      color: var(--muted);
+      max-width: 980px;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px;}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.78);
+      font-size:12px;
+      color: var(--muted);
+      user-select:none;
+    }
+    .dot{width:9px;height:9px;border-radius:999px;background: var(--accent); box-shadow: 0 0 0 4px rgba(37,99,235,.14);}
+    .dot.g{background: var(--accent2); box-shadow: 0 0 0 4px rgba(22,163,74,.12);}
+    .dot.w{background: var(--warn); box-shadow: 0 0 0 4px rgba(245,158,11,.12);}
+
+    .head{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--stroke);
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .head h3{margin:0; font-size: 15px; letter-spacing:.2px;}
+    .sub{color: var(--muted2); font-size: 12px; margin-top: 4px;}
+    .body{padding: 16px; display:grid; gap: 12px;}
+
+    .grid2{display:grid; gap:12px; grid-template-columns: repeat(2, minmax(0,1fr));}
+    .grid3{display:grid; gap:12px; grid-template-columns: repeat(3, minmax(0,1fr));}
+    @media (max-width: 1100px){
+      .wrap{grid-template-columns: 1fr}
+      .side{position:relative; top:auto}
+      .grid2,.grid3{grid-template-columns: 1fr}
+    }
+
+    .card{
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .card h4{margin:0 0 8px; font-size: 13px; letter-spacing:.2px;}
+    .card p{margin:0; font-size: 12.5px; color: var(--muted); line-height: 1.6;}
+    .list{margin: 0; padding-left: 18px; color: var(--muted); font-size: 12.5px; line-height: 1.65}
+    .list b{color:var(--text)}
+    .mono{font-family: var(--mono)}
+
+    table{
+      width:100%;
+      border-collapse: collapse;
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      background: var(--card2);
+      font-size: 12.5px;
+      box-shadow: var(--shadow2);
+    }
+    th,td{
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--stroke);
+      vertical-align: top;
+    }
+    th{
+      text-align:left;
+      font-weight: 800;
+      color: rgba(15,23,42,.88);
+      background: rgba(37,99,235,.06);
+    }
+    tr:last-child td{border-bottom:none}
+
+    .req{
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.78);
+      font-size: 11px;
+      color: rgba(15,23,42,.72);
+      white-space:nowrap;
+      user-select:none;
+    }
+    .req.good{border-color: rgba(22,163,74,.35); background: rgba(22,163,74,.10); color: rgba(21,128,61,.95);}
+    .req.warn{border-color: rgba(245,158,11,.40); background: rgba(245,158,11,.12); color: rgba(180,83,9,.95);}
+    .req.bad{border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.10); color: rgba(185,28,28,.95);}
+
+    .callout{
+      border-radius: 16px;
+      padding: 12px 12px;
+      border: 1px solid rgba(37,99,235,.30);
+      background: rgba(37,99,235,.08);
+      color: rgba(15,23,42,.86);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+    .callout b{color: var(--text)}
+
+    .muted{color: var(--muted)}
+    .foot{padding: 14px 16px; color: rgba(15,23,42,.55); font-size: 12px; text-align:center;}
+
+    /* =========================
+       DIAGRAMS (Flow)
+    ========================== */
+    .diagram{
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82));
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .lane-title{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom: 10px;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .lane-title b{font-size: 13px;}
+    .lane-title span{font-size: 12px; color: var(--muted2);}
+
+    .flow{display:grid; gap: 10px;}
+    .flow-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:stretch;
+    }
+    .node{
+      min-width: 220px;
+      flex: 1;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      box-shadow: var(--shadow2);
+    }
+    .node .t{
+      font-weight: 900;
+      font-size: 12.5px;
+      margin-bottom: 6px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .node .d{font-size: 12px; color: var(--muted); line-height: 1.6;}
+    .badge{
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      color: rgba(15,23,42,.72);
+      background: rgba(37,99,235,.06);
+      white-space:nowrap;
+      user-select:none;
+    }
+    .badge.g{background: rgba(22,163,74,.10); border-color: rgba(22,163,74,.25);}
+    .badge.w{background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.28);}
+    .badge.r{background: rgba(239,68,68,.10); border-color: rgba(239,68,68,.25);}
+
+    .arrow{
+      color: rgba(15,23,42,.45);
+      font-size: 18px;
+      user-select:none;
+      display:flex;
+      align-items:center;
+      padding: 0 2px;
+    }
+
+    /* =========================
+       PAYMENT SCENARIO TABS
+    ========================== */
+    .tabs{
+      display:flex; flex-wrap:wrap; gap:8px;
+      padding: 10px;
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      background: rgba(255,255,255,.82);
+      box-shadow: var(--shadow2);
+    }
+    .tab{
+      border: 1px solid var(--stroke);
+      background: #fff;
+      color: rgba(15,23,42,.82);
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-size: 12px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      user-select:none;
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+    }
+    .tab[aria-selected="true"]{
+      border-color: rgba(37,99,235,.40);
+      background: rgba(37,99,235,.08);
+      color: var(--text);
+    }
+    .tabpanel{display:none}
+    .tabpanel.active{display:block}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- =========================
+      SIDEBAR
+    ========================== -->
+    <aside class="side">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="assets/images/ui/Logo.png" alt="BOS — Business Online Solution">
+        </div>
+
+        <div class="brand-text">
+          <h1>D2C-Customer Side Panel</h1>
+        </div>
+      </div>
+
+      <nav class="nav" id="sidebarNav">
+        <a href="#overview" data-spy>1. Overview <span class="pill">Scope</span></a>
+        <a href="#start-default" data-spy>2. Start Screen <span class="pill">E-com</span></a>
+        <a href="#information-architecture" data-spy>3. IA / Sitemap <span class="pill">Nav</span></a>
+        <a href="#global-components" data-spy>4. Global Components <span class="pill">UI</span></a>
+        <a href="#auth-profile" data-spy>5. Login & Profile <span class="pill">OTP</span></a>
+        <a href="#wallet" data-spy>6. Wallet Model <span class="pill">Core</span></a>
+        <a href="#payment-diagrams" data-spy>7. Payment Diagrams <span class="pill">Wallet/PG</span></a>
+        <a href="#travel" data-spy>8. Travel Flow <span class="pill">Travel</span></a>
+        <a href="#utility" data-spy>9. Utility Flow <span class="pill">Utility</span></a>
+        <a href="#ecommerce" data-spy>10. E-commerce Flow <span class="pill">Default</span></a>
+        <a href="#states-errors" data-spy>11. States & Errors <span class="pill">UX</span></a>
+        <a href="#non-functional" data-spy>12. Non-Functional <span class="pill">NFR</span></a>
+        <a href="#handoff" data-spy>13. Figma Handoff <span class="pill">Checklist</span></a>
+      </nav>
+
+      <div class="foot">Scroll Spy: center-line + hysteresis</div>
+    </aside>
+
+    <!-- =========================
+      MAIN CONTENT
+    ========================== -->
+    <main class="main">
+
+      <!-- OVERVIEW -->
+      <section class="hero" id="overview">
+        <div class="top">
+          <div>
+            <h2>Overview (BRD Objective)</h2>
+            <p>
+              Build a <b>D2C consumer website panel</b> with three service sections:
+              <b>Travel</b> (Flight/Bus/Hotel), <b>Recharge & Utility</b> (and other services), and <b>E-commerce</b>.
+              Users can browse freely, but transaction actions require <b>OTP login</b> via <b>Mobile</b> or <b>Email</b>.
+              Every customer has a <b>Wallet</b> and can pay via <b>Wallet</b> or <b>Payment Gateway</b>.
+            </p>
+          </div>
+          <div class="meta">
+            <span class="tag"><span class="dot"></span> Premium light UI</span>
+            <span class="tag"><span class="dot g"></span> OTP login</span>
+            <span class="tag"><span class="dot w"></span> Wallet + PG</span>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-top:14px;">
+          <div class="card">
+            <h4>Default Start</h4>
+            <p class="muted">On first load, the website opens on <b>E-commerce Home</b>.</p>
+          </div>
+          <div class="card">
+            <h4>Login Rule</h4>
+            <p class="muted">Login is enforced at <b>checkout/payment/booking confirmation</b> to preserve conversion.</p>
+          </div>
+          <div class="card">
+            <h4>Wallet Rule</h4>
+            <p class="muted">If wallet is short, show <b>Add ₹Short & Pay</b> + allow direct PG payment.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- START DEFAULT -->
+      <section class="section" id="start-default">
+        <div class="head">
+          <div>
+            <h3>2) Start Screen (Default: E-commerce)</h3>
+            <div class="sub">User lands on E-commerce first; can switch to Travel / Utility later.</div>
+          </div>
+          <span class="pill">Default</span>
+        </div>
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Landing Behavior</h4>
+              <ul class="list">
+                <li>Default tab selected: <b>E-commerce</b></li>
+                <li>Top tabs visible: E-commerce • Travel • Recharge & Utility</li>
+                <li>Wallet chip + Profile available globally (header)</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Switching Between Tabs</h4>
+              <ul class="list">
+                <li>Switch tabs without losing session</li>
+                <li>Preserve in-progress forms where possible</li>
+                <li>Do not force login on browsing</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — First Load & Navigation</b>
+              <span>E-com → explore → transaction gate</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node">
+                  <div class="t">First Load <span class="badge">Default</span></div>
+                  <div class="d">Open on <b>E-commerce Home</b> (catalog, categories, banners).</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Explore Tabs <span class="badge">Switch</span></div>
+                  <div class="d">User can switch to <b>Travel</b> or <b>Utility</b> anytime.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Transaction Attempt <span class="badge w">Gate</span></div>
+                  <div class="d">If user is not logged in → open OTP login → return to same step.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- IA -->
+      <section class="section" id="information-architecture">
+        <div class="head">
+          <div>
+            <h3>3) Information Architecture (Sitemap + Rules)</h3>
+            <div class="sub">Figma pages should map directly to this structure.</div>
+          </div>
+          <span class="pill">IA</span>
+        </div>
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Top Navigation (Primary)</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:28%;">Tab</th>
+                    <th>Pages</th>
+                    <th style="width:18%;">Login Required</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>E-commerce</b></td>
+                    <td class="muted">Home → PDP → Cart → Address → Payment → Order Confirm → Orders</td>
+                    <td><span class="req.warn req warn">Checkout</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Travel</b></td>
+                    <td class="muted">Search → Listing → Details → Traveller → Payment → Confirm → Bookings</td>
+                    <td><span class="req warn">Payment</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Recharge & Utility</b></td>
+                    <td class="muted">Service → Input → Bill/Plan → Review → Payment → Receipt → History</td>
+                    <td><span class="req warn">Payment</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card">
+              <h4>Account Area (Secondary)</h4>
+              <ul class="list">
+                <li><b>Profile</b>: account details, preferences</li>
+                <li><b>Wallet</b>: balance, add funds, ledger</li>
+                <li><b>Unified Transaction Center</b>: orders + bookings + utility history</li>
+                <li><b>Support</b>: FAQs + ticket creation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <b>Rule:</b> Browsing is open. Login only appears when user commits to a transaction (pay/checkout/book).
+            After login, return to the same step without losing inputs.
+          </div>
+        </div>
+      </section>
+
+      <!-- GLOBAL COMPONENTS -->
+      <section class="section" id="global-components">
+        <div class="head">
+          <div>
+            <h3>4) Global Components (Reusable in Figma)</h3>
+            <div class="sub">Design these once and reuse in all flows.</div>
+          </div>
+          <span class="pill">UI</span>
+        </div>
+        <div class="body">
+          <div class="grid3">
+            <div class="card">
+              <h4>Header</h4>
+              <ul class="list">
+                <li>Logo</li>
+                <li>Tabs (E-com default active)</li>
+                <li>Search (contextual)</li>
+                <li>Wallet chip (₹ balance + add funds)</li>
+                <li>Profile icon (login/account)</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Payment Component (Universal)</h4>
+              <ul class="list">
+                <li>Tabs: <b>Pay via Wallet</b> / <b>Other Payment Options</b></li>
+                <li>Wallet insufficient: show short + top-up CTA</li>
+                <li>Always show total + breakdown</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>System States</h4>
+              <ul class="list">
+                <li>Skeleton loaders</li>
+                <li>Empty states with CTA</li>
+                <li>Error states with retry</li>
+                <li>Pending state with status check</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AUTH -->
+      <section class="section" id="auth-profile">
+        <div class="head">
+          <div>
+            <h3>5) Authentication & Profile (OTP Login)</h3>
+            <div class="sub">User can login with Mobile OTP or Email OTP.</div>
+          </div>
+          <span class="pill">OTP</span>
+        </div>
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Login Methods</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:28%;">Method</th>
+                    <th>Flow</th>
+                    <th style="width:18%;">Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Mobile OTP</b></td>
+                    <td class="muted">Enter mobile → Send OTP → Verify → Logged in</td>
+                    <td><span class="req good">Primary</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Email OTP</b></td>
+                    <td class="muted">Enter email → Send OTP → Verify → Logged in</td>
+                    <td><span class="req">Alternate</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card">
+              <h4>Profile Menu (After Login)</h4>
+              <ul class="list">
+                <li>My Account</li>
+                <li>Wallet</li>
+                <li>My Orders (E-com)</li>
+                <li>My Bookings (Travel)</li>
+                <li>My Report (Utility)</li>
+                <li>Support</li>
+                <li>Logout</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Login Gate (OTP)</b>
+              <span>Trigger: pay/checkout/book</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node">
+                  <div class="t">Trigger <span class="badge w">Gate</span></div>
+                  <div class="d">User clicks Pay/Checkout/Book. If not logged in, open login modal/bottom-sheet.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Choose Method <span class="badge">Mobile/Email</span></div>
+                  <div class="d">Two tabs: Mobile OTP or Email OTP. Provide resend timer + change option.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Verify & Return <span class="badge g">Success</span></div>
+                  <div class="d">After OTP success, close modal and return to the same step with preserved data.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- WALLET -->
+      <section class="section" id="wallet">
+        <div class="head">
+          <div>
+            <h3>6) Wallet Model</h3>
+            <div class="sub">Every customer has a wallet; top-up via PG.</div>
+          </div>
+          <span class="pill">Core</span>
+        </div>
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Wallet Capabilities</h4>
+              <ul class="list">
+                <li>Balance view (global header chip)</li>
+                <li>Add funds via payment gateway</li>
+                <li>Wallet ledger (credits/debits/refunds/pending)</li>
+                <li>Refunds default to wallet (policy-based)</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Ledger Types (Recommended)</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:26%;">Type</th>
+                    <th>Description</th>
+                    <th style="width:18%;">Impact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>TOPUP</b></td>
+                    <td class="muted">Add funds via PG → credit on success.</td>
+                    <td><span class="req good">Credit</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>PAYMENT</b></td>
+                    <td class="muted">Wallet payment for any module.</td>
+                    <td><span class="req bad">Debit</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>REFUND</b></td>
+                    <td class="muted">Refund from cancellations/returns.</td>
+                    <td><span class="req good">Credit</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>PENDING</b></td>
+                    <td class="muted">Confirmation pending; auto-resolve later.</td>
+                    <td><span class="req warn">Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="callout">
+            <b>Recommendation:</b> If wallet is short, default top-up amount should be the <b>exact shortfall</b> (user can edit).
+          </div>
+        </div>
+      </section>
+
+      <!-- PAYMENT -->
+      <section class="section" id="payment-diagrams">
+        <div class="head">
+          <div>
+            <h3>7) Payment Diagrams (Wallet vs PG)</h3>
+            <div class="sub">Same component reused across Travel/Utility/E-commerce.</div>
+          </div>
+          <span class="pill">Wallet/PG</span>
+        </div>
+        <div class="body">
+          <div class="tabs" role="tablist" aria-label="Payment Scenarios">
+            <div class="tab" role="tab" tabindex="0" aria-selected="true" data-tab="p1">A: Wallet Sufficient</div>
+            <div class="tab" role="tab" tabindex="-1" aria-selected="false" data-tab="p2">B: Wallet Insufficient</div>
+            <div class="tab" role="tab" tabindex="-1" aria-selected="false" data-tab="p3">C: Pay via PG Direct</div>
+          </div>
+
+          <div class="tabpanel active" id="p1" role="tabpanel">
+            <div class="diagram">
+              <div class="lane-title">
+                <b>Scenario A — Wallet Sufficient</b>
+                <span>Example: Amount ₹3,500 | Wallet ₹4,000</span>
+              </div>
+              <div class="flow">
+                <div class="flow-row">
+                  <div class="node"><div class="t">Payment Screen <span class="badge">Component</span></div><div class="d">Wallet tab preselected. Show total + breakdown.</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Pay via Wallet <span class="badge g">Enabled</span></div><div class="d">CTA: “Pay ₹3,500”. Deduct from wallet and generate receipt.</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Success <span class="badge g">Receipt</span></div><div class="d">Confirmation + reference IDs + next steps.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpanel" id="p2" role="tabpanel">
+            <div class="diagram">
+              <div class="lane-title">
+                <b>Scenario B — Wallet Insufficient</b>
+                <span>Example: Amount ₹4,800 | Wallet ₹4,000 | Short ₹800</span>
+              </div>
+              <div class="flow">
+                <div class="flow-row">
+                  <div class="node"><div class="t">Wallet Tab <span class="badge w">Short</span></div><div class="d">Show short amount clearly. CTA: “Add ₹800 & Pay”.</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Top-up via PG <span class="badge">Add Funds</span></div><div class="d">Default add amount = ₹800 (allow custom).</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Auto-return <span class="badge g">Seamless</span></div><div class="d">After success, wallet pay becomes enabled without re-entering details.</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Success <span class="badge g">Receipt</span></div><div class="d">Transaction completed; ledger updated.</div></div>
+                </div>
+                <div class="flow-row">
+                  <div class="node"><div class="t">Alternate <span class="badge">Choice</span></div><div class="d">User can skip top-up and pay directly using PG.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpanel" id="p3" role="tabpanel">
+            <div class="diagram">
+              <div class="lane-title">
+                <b>Scenario C — Payment Gateway Direct</b>
+                <span>Always available (UPI/Card/NetBanking)</span>
+              </div>
+              <div class="flow">
+                <div class="flow-row">
+                  <div class="node"><div class="t">Select PG <span class="badge">Tab</span></div><div class="d">User chooses “Other Payment Options”.</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Choose Method <span class="badge">UPI/Card</span></div><div class="d">Proceed through PG UI with final payable amount.</div></div>
+                  <div class="arrow">→</div>
+                  <div class="node"><div class="t">Result <span class="badge g">Success</span></div><div class="d">On success: confirmation. On failure: retry / change method.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <b>Universal rule:</b> One payment component used everywhere. Same layout + same states = higher trust.
+          </div>
+        </div>
+      </section>
+
+      <!-- TRAVEL -->
+      <section class="section" id="travel">
+        <div class="head">
+          <div>
+            <h3>8) Travel (Flight / Bus / Hotel) — Flow</h3>
+            <div class="sub">Search → Listing → Details → Traveller → Login Gate → Payment → Confirmation</div>
+          </div>
+          <span class="pill">Travel</span>
+        </div>
+        <div class="body">
+          <div class="grid3">
+            <div class="card"><h4>Flights</h4><p class="muted">Route/dates/pax → airline listing → fare rules → booking.</p></div>
+            <div class="card"><h4>Bus</h4><p class="muted">Route/date → operator listing → seat selection → booking.</p></div>
+            <div class="card"><h4>Hotels</h4><p class="muted">City/dates/rooms → hotel listing → room selection → booking.</p></div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Travel Booking</b>
+              <span>Login gate at payment</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node"><div class="t">Search <span class="badge">Input</span></div><div class="d">User enters criteria and searches availability.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Listing <span class="badge">Compare</span></div><div class="d">Filters + sorting + transparent price and fare rules preview.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Details <span class="badge">Policy</span></div><div class="d">Show itinerary/amenities + cancellation/refund rules + breakdown.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Traveller Details <span class="badge">Form</span></div><div class="d">Collect passenger details; allow saving travellers.</div></div>
+              </div>
+              <div class="flow-row">
+                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If not logged in, OTP login; return to payment step.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Wallet sufficient or top-up shortfall; PG always available.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Confirmation <span class="badge g">Voucher</span></div><div class="d">Booking ID + download/share + “My Bookings”.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UTILITY -->
+      <section class="section" id="utility">
+        <div class="head">
+          <div>
+            <h3>9) Recharge & Utility — Flow</h3>
+            <div class="sub">Service → Input → Bill/Plan → Review → Login Gate → Payment → Receipt → Pending handling</div>
+          </div>
+          <span class="pill">Utility</span>
+        </div>
+        <div class="body">
+          <div class="grid3">
+            <div class="card"><h4>Recharge</h4><p class="muted">Mobile / DTH. Operator detection + plan selection (optional).</p></div>
+            <div class="card"><h4>BBPS Utility</h4><p class="muted">Electricity/Gas/Water. Bill fetch required before payment.</p></div>
+            <div class="card"><h4>Receipts</h4><p class="muted">Txn ID + operator ref + status + share/download + history.</p></div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Utility Transaction</b>
+              <span>Pending status is mandatory</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node"><div class="t">Choose Service <span class="badge">Select</span></div><div class="d">User chooses Mobile/DTH/BBPS etc.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Enter Details <span class="badge">Input</span></div><div class="d">Number/consumer ID + operator selection + validation.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Fetch Bill/Plan <span class="badge">BBPS</span></div><div class="d">For billers: fetch amount, due date, customer name.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Review <span class="badge">Confirm</span></div><div class="d">Show summary + fees + payable amount.</div></div>
+              </div>
+              <div class="flow-row">
+                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If not logged in, OTP login. Return to payment step.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Same payment component and wallet shortfall rules.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Receipt <span class="badge g">Success</span></div><div class="d">Success/pending/failed + reference IDs + history entry.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Pending Handling <span class="badge w">Status</span></div><div class="d">Auto-refresh + “Check Status”. On final failure → auto-refund to wallet.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <b>Rule:</b> If payment succeeds but operator confirmation is delayed, show <b>Pending</b> with status check and do not double charge.
+          </div>
+        </div>
+      </section>
+
+      <!-- E-COMMERCE -->
+      <section class="section" id="ecommerce">
+        <div class="head">
+          <div>
+            <h3>10) E-commerce (Default Module) — Flow</h3>
+            <div class="sub">Browse → PDP → Cart → Address → Login Gate → Payment → Order Confirmation</div>
+          </div>
+          <span class="pill">Default</span>
+        </div>
+        <div class="body">
+          <div class="grid3">
+            <div class="card"><h4>Catalog</h4><p class="muted">Categories, search, filters, product cards with pricing.</p></div>
+            <div class="card"><h4>PDP</h4><p class="muted">Images, variants, delivery ETA, return policy, add to cart.</p></div>
+            <div class="card"><h4>Orders</h4><p class="muted">Order ID, tracking, invoice, returns/refunds (wallet default).</p></div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — E-commerce Order Journey</b>
+              <span>Default landing module</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node"><div class="t">Home (Default) <span class="badge">Landing</span></div><div class="d">User lands on e-commerce home: banners + categories + featured.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">PDP <span class="badge">Details</span></div><div class="d">Select variant, view policies, add to cart.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Cart <span class="badge">Review</span></div><div class="d">Qty updates, coupon (optional), final total.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Checkout <span class="badge">Address</span></div><div class="d">Select/add address + contact details.</div></div>
+              </div>
+              <div class="flow-row">
+                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If not logged in → OTP login → return to payment.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Universal payment component used here.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Order Confirm <span class="badge g">Order ID</span></div><div class="d">Order ID + tracking + invoice + “My Orders”.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout">
+            <b>Refund recommendation:</b> For returns/cancellations, default refund destination should be <b>wallet</b> for faster settlement (policy-based).
+          </div>
+        </div>
+      </section>
+
+      <!-- STATES -->
+      <section class="section" id="states-errors">
+        <div class="head">
+          <div>
+            <h3>11) UX States & Error Handling</h3>
+            <div class="sub">Required for premium-grade consumer product.</div>
+          </div>
+          <span class="pill">UX</span>
+        </div>
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>State Matrix</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:28%;">State</th>
+                    <th>Display</th>
+                    <th style="width:18%;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Loading</b></td>
+                    <td class="muted">Skeleton loaders + disabled CTA</td>
+                    <td><span class="req">Wait</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Empty</b></td>
+                    <td class="muted">Message + CTA (change filters/search)</td>
+                    <td><span class="req good">CTA</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Error</b></td>
+                    <td class="muted">Reason (if safe) + retry + support link</td>
+                    <td><span class="req bad">Retry</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>Pending</b></td>
+                    <td class="muted">Status tracking + “Check status” button</td>
+                    <td><span class="req warn">Check</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card">
+              <h4>Payment Safety Rules</h4>
+              <ul class="list">
+                <li>Prevent double-charging using reference IDs</li>
+                <li>On failure after debit: auto-refund to wallet</li>
+                <li>On pending: show progress + status checks</li>
+                <li>Always show support CTA on payment screens</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NFR -->
+      <section class="section" id="non-functional">
+        <div class="head">
+          <div>
+            <h3>12) Non-Functional Requirements</h3>
+            <div class="sub">Design-level NFRs that influence UX.</div>
+          </div>
+          <span class="pill">NFR</span>
+        </div>
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Performance</h4>
+              <ul class="list">
+                <li>Lazy-load listings and images</li>
+                <li>Use skeleton loaders for perceived speed</li>
+                <li>Fast “resume payment” flow on refresh</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Security</h4>
+              <ul class="list">
+                <li>OTP auth, secure sessions</li>
+                <li>Mask sensitive info</li>
+                <li>Transparent policy links before payment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HANDOFF -->
+      <section class="section" id="handoff">
+        <div class="head">
+          <div>
+            <h3>13) Figma Handoff Checklist</h3>
+            <div class="sub">How the designer should structure the file.</div>
+          </div>
+          <span class="pill">Checklist</span>
+        </div>
+        <div class="body">
+          <div class="card">
+            <h4>Figma Pages (Suggested Naming)</h4>
+            <ul class="list">
+              <li><b>00 Foundations</b> — colors, typography, spacing, radii, shadows</li>
+              <li><b>01 Components</b> — header, tabs, cards, forms, modals, payment component</li>
+              <li><b>02 E-commerce</b> — default home, PDP, cart, address, payment, order confirm</li>
+              <li><b>03 Travel</b> — home/search/listing/details/traveller/payment/confirm</li>
+              <li><b>04 Utility</b> — service grid/input/bill fetch/review/payment/receipt</li>
+              <li><b>05 Wallet & Profile</b> — wallet home/add funds/ledger + account + transaction center</li>
+              <li><b>06 System States</b> — loading/empty/error/pending templates</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <b>Critical:</b> Keep <b>one universal payment component</b> and reuse it everywhere (Travel/Utility/E-com).
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">Full BRD HTML • Light UI • Flow diagrams • Stable scroll highlight</div>
+    </main>
+  </div>
+
+  <script>
+    // =========================================================
+    // Payment scenario tabs
+    // =========================================================
+    (function(){
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.tabpanel');
+
+      function activate(id){
+        panels.forEach(p => p.classList.toggle('active', p.id === id));
+        tabs.forEach(t => {
+          const on = t.dataset.tab === id;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+        });
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('click', () => activate(t.dataset.tab));
+        t.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(t.dataset.tab); }
+          if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+            e.preventDefault();
+            const arr = Array.from(tabs);
+            const i = arr.indexOf(t);
+            const next = e.key === 'ArrowRight' ? (i+1) % arr.length : (i-1+arr.length) % arr.length;
+            arr[next].focus();
+            activate(arr[next].dataset.tab);
+          }
+        });
+      });
+    })();
+
+    // =========================================================
+    // Flicker-Free Sidebar Highlight (Scroll Spy)
+    // - Center-line detection + hysteresis + rAF throttle
+    // =========================================================
+    (function(){
+      const nav = document.getElementById('sidebarNav');
+      const links = Array.from(nav.querySelectorAll('a[data-spy]'));
+
+      const items = links.map(a => {
+        const id = a.getAttribute('href').slice(1);
+        return { a, id, el: document.getElementById(id) };
+      }).filter(x => x.el);
+
+      // Detection line position within viewport (0..1)
+      const SPY_Y = 0.46;
+
+      // Hysteresis threshold in px (prevents rapid toggling)
+      const HYST = 70;
+
+      let activeId = null;
+      let activeDist = Infinity;
+      let ticking = false;
+
+      function setActive(id){
+        if(activeId === id) return;
+        activeId = id;
+
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+id));
+
+        // Keep active link visible within sidebar (good UX)
+        const activeLink = nav.querySelector('a.active');
+        if(activeLink){
+          const navRect = nav.getBoundingClientRect();
+          const linkRect = activeLink.getBoundingClientRect();
+          const topOverflow = linkRect.top < navRect.top + 8;
+          const bottomOverflow = linkRect.bottom > navRect.bottom - 8;
+          if(topOverflow || bottomOverflow){
+            activeLink.scrollIntoView({block:'nearest'});
+          }
+        }
+      }
+
+      function compute(){
+        ticking = false;
+
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const spyYpx = vh * SPY_Y;
+
+        let best = null;
+
+        for(const it of items){
+          const r = it.el.getBoundingClientRect();
+
+          // Only consider visible-ish sections
+          if(r.bottom < 0 || r.top > vh) continue;
+
+          const center = r.top + (r.height / 2);
+          const dist = Math.abs(center - spyYpx);
+
+          if(!best || dist < best.dist){
+            best = { id: it.id, dist };
+          }
+        }
+
+        if(!best) return;
+
+        // First set
+        if(activeId === null){
+          activeDist = best.dist;
+          setActive(best.id);
+          return;
+        }
+
+        // Same section, update distance
+        if(best.id === activeId){
+          activeDist = best.dist;
+          return;
+        }
+
+        // Switch only if it's meaningfully closer
+        if(best.dist + HYST < activeDist){
+          activeDist = best.dist;
+          setActive(best.id);
+        } else {
+          // soften activeDist so next switch isn't blocked forever
+          activeDist = Math.min(activeDist, best.dist + HYST);
+        }
+      }
+
+      function onScroll(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(compute);
+      }
+
+      // Smooth scroll click + immediate active set
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href');
+          const target = document.querySelector(href);
+          if(!target) return;
+          e.preventDefault();
+
+          setActive(href.slice(1)); // immediate highlight
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+
+          // Recompute after scroll settles
+          setTimeout(compute, 140);
+          setTimeout(compute, 320);
+        });
+      });
+
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', onScroll);
+
+      // Initial compute
+      setTimeout(compute, 0);
+    })();
+  </script>
+</body>
+</html>
