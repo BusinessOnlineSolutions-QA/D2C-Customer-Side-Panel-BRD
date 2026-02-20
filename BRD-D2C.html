@@ -3,43 +3,72 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Font Awesome -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <title>D2C Website Panel — Visual BRD</title>  
+
+  <title>D2C Customer Website Panel — Visual BRD</title>
 </head>
+
 <body>
   <div class="wrap">
+
     <!-- =========================
-      SIDEBAR
+      SIDEBAR (TOC / Scroll Spy)
     ========================== -->
     <aside class="side">
       <div class="brand">
         <div class="brand-logo">
-          <img src="assets/images/ui/Logo.png" alt="BOS — Business Online Solution">
+          <img src="assets/images/ui/Logo.png" alt="BOS logo">
         </div>
-
         <div class="brand-text">
-          <h1>D2C-Customer Side Panel</h1>
+          <h1>D2C Customer Side Panel</h1>
+          <div class="brand-sub">Visual BRD • Customer Website Panel</div>
         </div>
       </div>
 
-      <nav class="nav" id="sidebarNav">
-        <a href="#overview" data-spy>1. Overview <span class="pill">Scope</span></a>
-        <a href="#start-default" data-spy>2. Start Screen <span class="pill">E-com</span></a>
+      <nav class="nav" id="sidebarNav" aria-label="BRD Table of Contents">
+        <a href="#overview" data-spy>1. Overview <span class="pill">Story</span></a>
+        <a href="#scope-principles" data-spy>2. Scope & Principles <span class="pill">Rules</span></a>
         <a href="#information-architecture" data-spy>3. IA / Sitemap <span class="pill">Nav</span></a>
         <a href="#global-components" data-spy>4. Global Components <span class="pill">UI</span></a>
-        <a href="#auth-profile" data-spy>5. Login & Profile <span class="pill">OTP</span></a>
-        <a href="#wallet" data-spy>6. Wallet Model <span class="pill">Core</span></a>
-        <a href="#payment-diagrams" data-spy>7. Payment Diagrams <span class="pill">Wallet/PG</span></a>
-        <a href="#travel" data-spy>8. Travel Flow <span class="pill">Travel</span></a>
-        <a href="#utility" data-spy>9. Utility Flow <span class="pill">Utility</span></a>
-        <a href="#ecommerce" data-spy>10. E-commerce Flow <span class="pill">Default</span></a>
-        <a href="#states-errors" data-spy>11. States & Errors <span class="pill">UX</span></a>
-        <a href="#non-functional" data-spy>12. Non-Functional <span class="pill">NFR</span></a>
-        <a href="#handoff" data-spy>13. Figma Handoff <span class="pill">Checklist</span></a>
+
+        <a href="#header-auth-profile" data-spy>5. Header + Profile States <span class="pill">Auth</span></a>
+        <a href="#auth-otp" data-spy>6. OTP Login Flow <span class="pill">OTP</span></a>
+
+        <a href="#wallet" data-spy>7. Wallet Model <span class="pill">Core</span></a>
+        <a href="#payment-diagrams" data-spy>8. Payment Scenarios <span class="pill">Wallet/PG</span></a>
+
+        <a href="#my-account-structure" data-spy>9. My Account Structure <span class="pill">Menu</span></a>
+        <a href="#my-profile" data-spy>10. My Profile <span class="pill">Form</span></a>
+        <a href="#my-booking" data-spy>11. My Booking <span class="pill">Travel</span></a>
+
+        <a href="#my-account-dashboard" data-spy>12. Dashboard <span class="pill">KPIs</span></a>
+        <a href="#wallet-ledger" data-spy>13. Wallet Ledger <span class="pill">Ledger</span></a>
+        <a href="#utility-transactions-report" data-spy>14. Utility Transactions <span class="pill">Report</span></a>
+        <a href="#travel-transactions-report" data-spy>15. Travel Transactions <span class="pill">Report</span></a>
+        <a href="#complaint-ticket-tracker" data-spy>16. My Complaint <span class="pill">Support</span></a>
+        <a href="#booking-cancellation-report" data-spy>17. Cancellation Report <span class="pill">Cancel</span></a>
+        <a href="#utility-complaint-report" data-spy>18. Utility Complaint Report <span class="pill">Closed</span></a>
+
+        <a href="#travel" data-spy>19. Travel Flow <span class="pill">Flow</span></a>
+        <a href="#travel-search" data-spy>20. Flight/Bus Search <span class="pill">Search</span></a>
+        <a href="#travel-filters" data-spy>21. Flight/Bus Filters <span class="pill">Filters</span></a>
+        <a href="#travel-seat-selection" data-spy>22. Seat Selection <span class="pill">Bus</span></a>
+
+        <a href="#utility" data-spy>23. Recharge & Utility Flow <span class="pill">Flow</span></a>
+        <a href="#ecommerce" data-spy>24. E-commerce Flow <span class="pill">Default</span></a>
+
+        <a href="#states-errors" data-spy>25. States & Errors <span class="pill">UX</span></a>
+        <a href="#non-functional" data-spy>26. Non-Functional <span class="pill">NFR</span></a>
+        <a href="#handoff" data-spy>27. Figma Handoff <span class="pill">Checklist</span></a>
       </nav>
 
-      <div class="foot">Made By : Guru <i class="fa-solid fa-heart" style="color: rgba(249, 4, 4, 1.00);"></i></div>
+      <div class="foot-side"> © 2026 Business Online Solution. All rights reserved. <i class="fa-solid fa-shield" style="color: rgba(249, 4, 4, 1.00);"></i></div>
     </aside>
 
     <!-- =========================
@@ -47,21 +76,57 @@
     ========================== -->
     <main class="main">
 
-      <!-- OVERVIEW -->
+      <!-- ======================================================
+        1) OVERVIEW (STORY)
+      ======================================================= -->
       <section class="hero" id="overview">
         <div class="top">
           <div>
-            <h2>Overview (BRD Objective)</h2>
+            <h2>D2C Customer Website Panel — Visual BRD</h2>
             <p>
-              Build a <b>D2C consumer website panel</b> with three service sections:
-              <b>Travel</b> (Flight/Bus/Hotel), <b>Recharge & Utility</b> (and other services), and <b>E-commerce</b>.
-              Users can browse freely, but transaction actions require <b>OTP login</b> via <b>Mobile</b> or <b>Email</b>.
-              Every customer has a <b>Wallet</b> and can pay via <b>Wallet</b> or <b>Payment Gateway</b>.
+              This BRD defines a <b>D2C customer website panel</b> that supports three service areas:
+              <b>E-commerce</b> (default landing), <b>Travel</b> (Flight/Bus/Hotel/Train), and <b>Recharge &amp; Utility</b>
+              (BBPS + Mobile/DTH + other supported services).
+              The platform is designed for <b>open browsing without login</b>. Authentication is enforced only at the moment a user
+              commits to a transaction (checkout/booking confirmation/payment) using <b>OTP login</b> via <b>Mobile Number</b> or
+              <b>Email ID</b>.
+              Every logged-in customer has a <b>wallet</b> and can pay using <b>Wallet</b> or <b>Payment Gateway</b>.
             </p>
+
+            <div class="story-steps">
+              <div class="story-step">
+                <div class="k">Step 1 — Default Landing</div>
+                <div class="v">The website opens on <b>E-commerce</b> by default. Browsing is available without login.</div>
+              </div>
+              <div class="story-step">
+                <div class="k">Step 2 — Explore Services</div>
+                <div class="v">Users can switch between <b>E-commerce</b>, <b>Travel</b>, and <b>Recharge &amp; Utility</b> at any time.</div>
+              </div>
+              <div class="story-step">
+                <div class="k">Step 3 — Login Gate</div>
+                <div class="v">
+                  Login is required only when a user attempts a transaction action such as <b>Checkout</b>, <b>Book</b>, or <b>Pay</b>.
+                  If the user is a guest, the system triggers <b>OTP login</b> and returns the user to the same step after verification.
+                </div>
+              </div>
+              <div class="story-step">
+                <div class="k">Step 4 — Pay</div>
+                <div class="v">Users can pay via <b>Wallet</b> (if sufficient) or via <b>Payment Gateway</b> (UPI/Card/NetBanking).</div>
+              </div>
+              <div class="story-step">
+                <div class="k">Step 5 — Post-Transaction Management</div>
+                <div class="v">All history, receipts, reports, complaints, wallet ledger, and bookings are managed under <b>My Account</b>.</div>
+              </div>
+              <div class="story-step">
+                <div class="k">Step 6 — User-Scoped Data</div>
+                <div class="v">All reports and history views display <b>only the logged-in user’s data</b> (no cross-user visibility).</div>
+              </div>
+            </div>
           </div>
+
           <div class="meta">
-            <span class="tag"><span class="dot"></span> Premium light UI</span>
-            <span class="tag"><span class="dot g"></span> OTP login</span>
+            <span class="tag"><span class="dot"></span> Light UI</span>
+            <span class="tag"><span class="dot g"></span> OTP Login</span>
             <span class="tag"><span class="dot w"></span> Wallet + PG</span>
           </div>
         </div>
@@ -72,86 +137,106 @@
             <p class="muted">On first load, the website opens on <b>E-commerce Home</b>.</p>
           </div>
           <div class="card">
-            <h4>Login Rule</h4>
-            <p class="muted">Login is enforced at <b>checkout/payment/booking confirmation</b> to preserve conversion.</p>
+            <h4>Authentication Rule</h4>
+            <p class="muted">Login is enforced only at <b>checkout / booking confirmation / payment</b>.</p>
           </div>
           <div class="card">
-            <h4>Wallet Rule</h4>
-            <p class="muted">If wallet is short, show <b>Add ₹Short & Pay</b> + allow direct PG payment.</p>
+            <h4>Payment Rule</h4>
+            <p class="muted">If wallet is short, show shortfall and allow <b>Top-up</b> or direct <b>PG payment</b>.</p>
+          </div>
+        </div>
+
+        <div class="diagram" style="margin-top:12px;">
+          <div class="lane-title">
+            <b>Diagram — End-to-End Journey</b>
+            <span>Browse → Gate → Pay → Manage</span>
+          </div>
+          <div class="flow">
+            <div class="flow-row">
+              <div class="node">
+                <div class="t">Browse Freely <span class="badge">Guest</span></div>
+                <div class="d">User explores E-commerce/Travel/Utility without logging in.</div>
+              </div>
+              <div class="arrow">→</div>
+              <div class="node">
+                <div class="t">Commit Action <span class="badge w">Gate</span></div>
+                <div class="d">Checkout / Book / Pay triggers OTP login if the user is not logged in.</div>
+              </div>
+              <div class="arrow">→</div>
+              <div class="node">
+                <div class="t">OTP Login <span class="badge w">Verify</span></div>
+                <div class="d">Login using Mobile OTP or Email OTP. After success, return to the same step.</div>
+              </div>
+              <div class="arrow">→</div>
+              <div class="node">
+                <div class="t">Payment <span class="badge g">Complete</span></div>
+                <div class="d">Pay via Wallet or Payment Gateway. Generate receipt and update wallet ledger.</div>
+              </div>
+            </div>
+            <div class="flow-row">
+              <div class="node">
+                <div class="t">My Account <span class="badge">Manage</span></div>
+                <div class="d">Dashboard, ledger, reports, bookings, complaints, cancellations, and refund details (where applicable).</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- START DEFAULT -->
-      <section class="section" id="start-default">
+      <!-- ======================================================
+        2) SCOPE & PRINCIPLES
+      ======================================================= -->
+      <section class="section" id="scope-principles">
         <div class="head">
           <div>
-            <h3>2) Start Screen (Default: E-commerce)</h3>
-            <div class="sub">User lands on E-commerce first; can switch to Travel / Utility later.</div>
+            <h3>2) Scope &amp; Principles</h3>
+            <div class="sub">High-level rules that define behavior across modules.</div>
           </div>
-          <span class="pill">Default</span>
+          <span class="pill">Rules</span>
         </div>
         <div class="body">
           <div class="grid2">
             <div class="card">
-              <h4>Landing Behavior</h4>
+              <h4>Modules in Scope</h4>
               <ul class="list">
-                <li>Default tab selected: <b>E-commerce</b></li>
-                <li>Top tabs visible: E-commerce • Travel • Recharge & Utility</li>
-                <li>Wallet chip + Profile available globally (header)</li>
+                <li><b>E-commerce</b> (Default) — browse → cart → checkout → payment → order confirmation</li>
+                <li><b>Travel</b> — search/listing/filters/details/traveller/seat selection (Bus) → payment → confirmation</li>
+                <li><b>Recharge &amp; Utility</b> — service selection → inputs → bill/plan → payment → receipt/history</li>
               </ul>
             </div>
             <div class="card">
-              <h4>Switching Between Tabs</h4>
+              <h4>Cross-Cutting Rules</h4>
               <ul class="list">
-                <li>Switch tabs without losing session</li>
-                <li>Preserve in-progress forms where possible</li>
-                <li>Do not force login on browsing</li>
+                <li><b>Login/Create Account</b> is available in the header when the user is a guest.</li>
+                <li><b>Profile</b> is always visible and changes based on guest vs logged-in state.</li>
+                <li><b>Data Visibility</b>: All reports are <b>user-scoped</b> (only the logged-in user’s records).</li>
+                <li><b>Universal Payment Component</b> must be reused across all modules.</li>
               </ul>
             </div>
           </div>
 
-          <div class="diagram">
-            <div class="lane-title">
-              <b>Diagram — First Load & Navigation</b>
-              <span>E-com → explore → transaction gate</span>
-            </div>
-            <div class="flow">
-              <div class="flow-row">
-                <div class="node">
-                  <div class="t">First Load <span class="badge">Default</span></div>
-                  <div class="d">Open on <b>E-commerce Home</b> (catalog, categories, banners).</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="node">
-                  <div class="t">Explore Tabs <span class="badge">Switch</span></div>
-                  <div class="d">User can switch to <b>Travel</b> or <b>Utility</b> anytime.</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="node">
-                  <div class="t">Transaction Attempt <span class="badge w">Gate</span></div>
-                  <div class="d">If user is not logged in → open OTP login → return to same step.</div>
-                </div>
-              </div>
-            </div>
+          <div class="callout">
+            <b>Business objective:</b> Keep browsing frictionless and enforce authentication only at the point of transaction commitment
+            to maximize conversion while maintaining secure payments.
           </div>
-
         </div>
       </section>
 
-      <!-- IA -->
+      <!-- ======================================================
+        3) IA / SITEMAP
+      ======================================================= -->
       <section class="section" id="information-architecture">
         <div class="head">
           <div>
-            <h3>3) Information Architecture (Sitemap + Rules)</h3>
-            <div class="sub">Figma pages should map directly to this structure.</div>
+            <h3>3) Information Architecture (Sitemap + Login Gate Points)</h3>
+            <div class="sub">Design and development must map directly to these flows.</div>
           </div>
           <span class="pill">IA</span>
         </div>
         <div class="body">
           <div class="grid2">
             <div class="card">
-              <h4>Top Navigation (Primary)</h4>
+              <h4>Primary Navigation</h4>
               <table>
                 <thead>
                   <tr>
@@ -163,16 +248,16 @@
                 <tbody>
                   <tr>
                     <td><b>E-commerce</b></td>
-                    <td class="muted">Home → PDP → Cart → Address → Payment → Order Confirm → Orders</td>
-                    <td><span class="req.warn req warn">Checkout</span></td>
+                    <td class="muted">Home → PDP → Cart → Address → Payment → Order Confirmation</td>
+                    <td><span class="req warn">Checkout</span></td>
                   </tr>
                   <tr>
                     <td><b>Travel</b></td>
-                    <td class="muted">Search → Listing → Details → Traveller → Payment → Confirm → Bookings</td>
+                    <td class="muted">Search → Listing → Filters → Details → Traveller → Seat Selection (Bus) → Payment → Confirmation</td>
                     <td><span class="req warn">Payment</span></td>
                   </tr>
                   <tr>
-                    <td><b>Recharge & Utility</b></td>
+                    <td><b>Recharge &amp; Utility</b></td>
                     <td class="muted">Service → Input → Bill/Plan → Review → Payment → Receipt → History</td>
                     <td><span class="req warn">Payment</span></td>
                   </tr>
@@ -183,27 +268,48 @@
             <div class="card">
               <h4>Account Area (Secondary)</h4>
               <ul class="list">
-                <li><b>Profile</b>: account details, preferences</li>
-                <li><b>Wallet</b>: balance, add funds, ledger</li>
-                <li><b>Unified Transaction Center</b>: orders + bookings + utility history</li>
-                <li><b>Support</b>: FAQs + ticket creation</li>
+                <li><b>My Account</b> includes: Dashboard, Wallet Ledger, Utility Transactions, Travel Transactions, My Complaint, Cancellation Report, Utility Complaint Report, My Booking, My Profile, Logout</li>
+                <li><b>Profile dropdown</b> shows day/date/time and welcome user-id when logged in</li>
               </ul>
             </div>
           </div>
 
-          <div class="callout">
-            <b>Rule:</b> Browsing is open. Login only appears when user commits to a transaction (pay/checkout/book).
-            After login, return to the same step without losing inputs.
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Navigation &amp; Login Gate</b>
+              <span>Open browse → gate at transaction</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node">
+                  <div class="t">Open Browse <span class="badge">Free</span></div>
+                  <div class="d">User browses E-commerce/Travel/Utility without login.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Transaction Action <span class="badge w">Gate</span></div>
+                  <div class="d">Checkout / Book / Pay triggers OTP login if the user is a guest.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Resume Same Step <span class="badge g">Preserve</span></div>
+                  <div class="d">After OTP verification, return to the same step without losing entered data.</div>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
 
-      <!-- GLOBAL COMPONENTS -->
+      <!-- ======================================================
+        4) GLOBAL COMPONENTS
+      ======================================================= -->
       <section class="section" id="global-components">
         <div class="head">
           <div>
-            <h3>4) Global Components (Reusable in Figma)</h3>
-            <div class="sub">Design these once and reuse in all flows.</div>
+            <h3>4) Global Components (Design Once, Reuse Everywhere)</h3>
+            <div class="sub">Reusable design blocks for implementation and handoff.</div>
           </div>
           <span class="pill">UI</span>
         </div>
@@ -213,18 +319,20 @@
               <h4>Header</h4>
               <ul class="list">
                 <li>Logo</li>
-                <li>Tabs (E-com default active)</li>
-                <li>Search (contextual)</li>
+                <li>Tabs: E-commerce (default) / Travel / Recharge &amp; Utility</li>
+                <li>Context Search (if applicable)</li>
                 <li>Wallet chip (₹ balance + add funds)</li>
-                <li>Profile icon (login/account)</li>
+                <li><b>Login/Create Account</b> (guest only)</li>
+                <li><b>Profile</b> (always visible; changes by state)</li>
               </ul>
             </div>
             <div class="card">
-              <h4>Payment Component (Universal)</h4>
+              <h4>Universal Payment Component</h4>
               <ul class="list">
                 <li>Tabs: <b>Pay via Wallet</b> / <b>Other Payment Options</b></li>
-                <li>Wallet insufficient: show short + top-up CTA</li>
-                <li>Always show total + breakdown</li>
+                <li>Wallet shortfall state with top-up CTA</li>
+                <li>Total amount + service fee + GST breakdown</li>
+                <li>Support CTA visible on payment screens</li>
               </ul>
             </div>
             <div class="card">
@@ -233,22 +341,96 @@
                 <li>Skeleton loaders</li>
                 <li>Empty states with CTA</li>
                 <li>Error states with retry</li>
-                <li>Pending state with status check</li>
+                <li>Pending state + status check (critical for utility)</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- AUTH -->
-      <section class="section" id="auth-profile">
+      <!-- ======================================================
+        5) HEADER + PROFILE RULES
+      ======================================================= -->
+      <section class="section" id="header-auth-profile">
         <div class="head">
           <div>
-            <h3>5) Authentication & Profile (OTP Login)</h3>
-            <div class="sub">User can login with Mobile OTP or Email OTP.</div>
+            <h3>5) Header — Login/Create Account &amp; Profile States</h3>
+            <div class="sub">Header behavior must remain consistent across all modules.</div>
+          </div>
+          <span class="pill">Auth</span>
+        </div>
+
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Guest State (Not Logged In)</h4>
+              <ul class="list">
+                <li>Header shows <b>Login/Create Account</b> and <b>Profile</b>.</li>
+                <li>Profile dropdown shows: <b>As Guest</b> and <b>Today’s (Day, Date, Time)</b>.</li>
+                <li>User can browse freely across all modules.</li>
+                <li>At <b>checkout</b>, <b>booking confirmation</b>, or <b>payment</b> → OTP login becomes mandatory.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>Logged-In State</h4>
+              <ul class="list">
+                <li><b>Login/Create Account</b> is hidden.</li>
+                <li>Profile dropdown shows:
+                  <b>Day</b>, <b>Date</b>, <b>Time</b>, <b>Welcome (User ID)</b>, <b>My Account</b>, and <b>Logout</b>.
+                </li>
+                <li>All reports and history become visible, but only for the logged-in user.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Login Entry Points</b>
+              <span>Header login + payment gate login</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node">
+                  <div class="t">Header: Login/Create Account <span class="badge">Optional</span></div>
+                  <div class="d">User can choose to log in proactively at any time.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">OTP Login Modal <span class="badge w">OTP</span></div>
+                  <div class="d">Two methods: <b>Mobile OTP</b> or <b>Email OTP</b>.</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                  <div class="t">Resume Same Step <span class="badge g">Resume</span></div>
+                  <div class="d">After login, user returns to the same step without losing entered details.</div>
+                </div>
+              </div>
+
+              <div class="flow-row">
+                <div class="node">
+                  <div class="t">Transaction Gate <span class="badge w">Mandatory</span></div>
+                  <div class="d">If a guest clicks Pay/Checkout/Book, OTP login is forced before proceeding.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================
+        6) AUTH OTP LOGIN
+      ======================================================= -->
+      <section class="section" id="auth-otp">
+        <div class="head">
+          <div>
+            <h3>6) OTP Login (Mobile / Email)</h3>
+            <div class="sub">Authentication flow definition for designers and developers.</div>
           </div>
           <span class="pill">OTP</span>
         </div>
+
         <div class="body">
           <div class="grid2">
             <div class="card">
@@ -264,130 +446,87 @@
                 <tbody>
                   <tr>
                     <td><b>Mobile OTP</b></td>
-                    <td class="muted">Enter mobile → Send OTP → Verify → Logged in</td>
+                    <td class="muted">Enter mobile → Send OTP → Verify OTP → Logged in</td>
                     <td><span class="req good">Primary</span></td>
                   </tr>
                   <tr>
                     <td><b>Email OTP</b></td>
-                    <td class="muted">Enter email → Send OTP → Verify → Logged in</td>
+                    <td class="muted">Enter email → Send OTP → Verify OTP → Logged in</td>
                     <td><span class="req">Alternate</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
             <div class="card">
-              <h4>Profile Menu (After Login)</h4>
+              <h4>Login UX Requirements</h4>
               <ul class="list">
-                <li>My Account</li>
-                <li>Wallet</li>
-                <li>My Orders (E-com)</li>
-                <li>My Bookings (Travel)</li>
-                <li>My Report (Utility)</li>
-                <li>Support</li>
-                <li>Logout</li>
+                <li>Resend timer and “Change number/email” option</li>
+                <li>Clear OTP validation error messages</li>
+                <li>Post-login: close modal and resume the exact step</li>
+                <li>Secure session handling and immediate header state update</li>
               </ul>
             </div>
           </div>
-
-          <div class="diagram">
-            <div class="lane-title">
-              <b>Diagram — Login Gate (OTP)</b>
-              <span>Trigger: pay/checkout/book</span>
-            </div>
-            <div class="flow">
-              <div class="flow-row">
-                <div class="node">
-                  <div class="t">Trigger <span class="badge w">Gate</span></div>
-                  <div class="d">User clicks Pay/Checkout/Book. If not logged in, open login modal/bottom-sheet.</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="node">
-                  <div class="t">Choose Method <span class="badge">Mobile/Email</span></div>
-                  <div class="d">Two tabs: Mobile OTP or Email OTP. Provide resend timer + change option.</div>
-                </div>
-                <div class="arrow">→</div>
-                <div class="node">
-                  <div class="t">Verify & Return <span class="badge g">Success</span></div>
-                  <div class="d">After OTP success, close modal and return to the same step with preserved data.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
-      <!-- WALLET -->
+      <!-- ======================================================
+        7) WALLET MODEL
+      ======================================================= -->
       <section class="section" id="wallet">
         <div class="head">
           <div>
-            <h3>6) Wallet Model</h3>
-            <div class="sub">Every customer has a wallet; top-up via PG.</div>
+            <h3>7) Wallet Model (Customer Wallet)</h3>
+            <div class="sub">Every customer has a wallet to perform transactions across services.</div>
           </div>
           <span class="pill">Core</span>
         </div>
+
         <div class="body">
           <div class="grid2">
             <div class="card">
               <h4>Wallet Capabilities</h4>
               <ul class="list">
-                <li>Balance view (global header chip)</li>
-                <li>Add funds via payment gateway</li>
-                <li>Wallet ledger (credits/debits/refunds/pending)</li>
-                <li>Refunds default to wallet (policy-based)</li>
+                <li>Wallet balance visible globally (header chip)</li>
+                <li>Top-up wallet via payment gateway</li>
+                <li>Wallet ledger entries for spends, loads, refunds, and pending states</li>
+                <li>Refunds typically settle to wallet (policy-based)</li>
               </ul>
             </div>
+
             <div class="card">
-              <h4>Ledger Types (Recommended)</h4>
-              <table>
-                <thead>
-                  <tr>
-                    <th style="width:26%;">Type</th>
-                    <th>Description</th>
-                    <th style="width:18%;">Impact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><b>TOPUP</b></td>
-                    <td class="muted">Add funds via PG → credit on success.</td>
-                    <td><span class="req good">Credit</span></td>
-                  </tr>
-                  <tr>
-                    <td><b>PAYMENT</b></td>
-                    <td class="muted">Wallet payment for any module.</td>
-                    <td><span class="req bad">Debit</span></td>
-                  </tr>
-                  <tr>
-                    <td><b>REFUND</b></td>
-                    <td class="muted">Refund from cancellations/returns.</td>
-                    <td><span class="req good">Credit</span></td>
-                  </tr>
-                  <tr>
-                    <td><b>PENDING</b></td>
-                    <td class="muted">Confirmation pending; auto-resolve later.</td>
-                    <td><span class="req warn">Pending</span></td>
-                  </tr>
-                </tbody>
-              </table>
+              <h4>Wallet Details (On Wallet Click)</h4>
+              <ul class="list">
+                <li><b>Consumable Balance</b> — displayed balance that is usable</li>
+                <li><b>Hold Balance</b> — if any holds are applied</li>
+                <li><b>Total Balance</b> — sum of consumable and hold balance</li>
+              </ul>
+              <p class="muted" style="margin-top:8px;">
+                Example: Consumable balance = <b>18,808.19</b> + Hold balance = <b>300</b> = total balance = <b>19,108.19</b>
+              </p>
             </div>
           </div>
 
           <div class="callout">
-            <b>Recommendation:</b> If wallet is short, default top-up amount should be the <b>exact shortfall</b> (user can edit).
+            <b>Payment model:</b> During payment, users see two options — <b>Pay via Wallet</b> and
+            <b>Pay via Other Payment Options (Payment Gateway)</b>.
           </div>
         </div>
       </section>
 
-      <!-- PAYMENT -->
+      <!-- ======================================================
+        8) PAYMENT SCENARIOS (TABS)
+      ======================================================= -->
       <section class="section" id="payment-diagrams">
         <div class="head">
           <div>
-            <h3>7) Payment Diagrams (Wallet vs PG)</h3>
-            <div class="sub">Same component reused across Travel/Utility/E-commerce.</div>
+            <h3>8) Payment Scenarios (Wallet vs Payment Gateway)</h3>
+            <div class="sub">One payment component reused across Travel/Utility/E-commerce.</div>
           </div>
           <span class="pill">Wallet/PG</span>
         </div>
+
         <div class="body">
           <div class="tabs" role="tablist" aria-label="Payment Scenarios">
             <div class="tab" role="tab" tabindex="0" aria-selected="true" data-tab="p1">A: Wallet Sufficient</div>
@@ -403,11 +542,11 @@
               </div>
               <div class="flow">
                 <div class="flow-row">
-                  <div class="node"><div class="t">Payment Screen <span class="badge">Component</span></div><div class="d">Wallet tab preselected. Show total + breakdown.</div></div>
+                  <div class="node"><div class="t">Payment Screen <span class="badge">Component</span></div><div class="d">Wallet tab is preselected. Show total and full breakdown.</div></div>
                   <div class="arrow">→</div>
                   <div class="node"><div class="t">Pay via Wallet <span class="badge g">Enabled</span></div><div class="d">CTA: “Pay ₹3,500”. Deduct from wallet and generate receipt.</div></div>
                   <div class="arrow">→</div>
-                  <div class="node"><div class="t">Success <span class="badge g">Receipt</span></div><div class="d">Confirmation + reference IDs + next steps.</div></div>
+                  <div class="node"><div class="t">Success <span class="badge g">Receipt</span></div><div class="d">Confirmation with reference IDs and next steps.</div></div>
                 </div>
               </div>
             </div>
@@ -421,16 +560,16 @@
               </div>
               <div class="flow">
                 <div class="flow-row">
-                  <div class="node"><div class="t">Wallet Tab <span class="badge w">Short</span></div><div class="d">Show short amount clearly. CTA: “Add ₹800 & Pay”.</div></div>
+                  <div class="node"><div class="t">Wallet Tab <span class="badge w">Short</span></div><div class="d">Show short amount clearly. CTA: “Add ₹800 &amp; Pay”.</div></div>
                   <div class="arrow">→</div>
-                  <div class="node"><div class="t">Top-up via PG <span class="badge">Add Funds</span></div><div class="d">Default add amount = ₹800 (allow custom).</div></div>
+                  <div class="node"><div class="t">Top-up via PG <span class="badge">Add Funds</span></div><div class="d">Default add amount = ₹800 (allow custom amount).</div></div>
                   <div class="arrow">→</div>
-                  <div class="node"><div class="t">Auto-return <span class="badge g">Seamless</span></div><div class="d">After success, wallet pay becomes enabled without re-entering details.</div></div>
+                  <div class="node"><div class="t">Auto-return <span class="badge g">Seamless</span></div><div class="d">After success, wallet payment is enabled without re-entering details.</div></div>
                   <div class="arrow">→</div>
-                  <div class="node"><div class="t">Success <span class="badge g">Receipt</span></div><div class="d">Transaction completed; ledger updated.</div></div>
+                  <div class="node"><div class="t">Success <span class="badge g">Receipt</span></div><div class="d">Transaction completed; wallet ledger updated.</div></div>
                 </div>
                 <div class="flow-row">
-                  <div class="node"><div class="t">Alternate <span class="badge">Choice</span></div><div class="d">User can skip top-up and pay directly using PG.</div></div>
+                  <div class="node"><div class="t">Alternate <span class="badge">Choice</span></div><div class="d">User can skip top-up and pay directly using Payment Gateway.</div></div>
                 </div>
               </div>
             </div>
@@ -444,170 +583,992 @@
               </div>
               <div class="flow">
                 <div class="flow-row">
-                  <div class="node"><div class="t">Select PG <span class="badge">Tab</span></div><div class="d">User chooses “Other Payment Options”.</div></div>
+                  <div class="node"><div class="t">Select PG <span class="badge">Tab</span></div><div class="d">User selects “Other Payment Options”.</div></div>
                   <div class="arrow">→</div>
                   <div class="node"><div class="t">Choose Method <span class="badge">UPI/Card</span></div><div class="d">Proceed through PG UI with final payable amount.</div></div>
                   <div class="arrow">→</div>
-                  <div class="node"><div class="t">Result <span class="badge g">Success</span></div><div class="d">On success: confirmation. On failure: retry / change method.</div></div>
+                  <div class="node"><div class="t">Result <span class="badge g">Success</span></div><div class="d">On success: confirmation. On failure: retry or change method.</div></div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="callout">
-            <b>Universal rule:</b> One payment component used everywhere. Same layout + same states = higher trust.
+            <b>Universal rule:</b> One payment component is reused everywhere. Consistent layout and states improve user trust and reduce payment drop-offs.
           </div>
         </div>
       </section>
 
-      <!-- TRAVEL -->
-      <section class="section" id="travel">
+      <!-- ======================================================
+        9) MY ACCOUNT STRUCTURE
+      ======================================================= -->
+      <section class="section" id="my-account-structure">
         <div class="head">
           <div>
-            <h3>8) Travel (Flight / Bus / Hotel) — Flow</h3>
-            <div class="sub">Search → Listing → Details → Traveller → Login Gate → Payment → Confirmation</div>
+            <h3>9) My Account (Structure)</h3>
+            <div class="sub">This navigation must match the website panel structure. All data shown is user-scoped.</div>
+          </div>
+          <span class="pill">Menu</span>
+        </div>
+
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>My Account — Left Navigation Items</h4>
+              <ul class="list">
+                <li>Dashboard</li>
+                <li>Wallet Ledger</li>
+                <li>Utility Transactions</li>
+                <li>Travel Transactions</li>
+                <li>My Complaint</li>
+                <li>Cancellation Report</li>
+                <li>Utility Complaint Report</li>
+                <li class="muted">— divider —</li>
+                <li>My Booking</li>
+                <li>My Profile</li>
+                <li><b>Logout</b> (bottom fixed)</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>My Account — Right Content Area</h4>
+              <ul class="list">
+                <li>Loads the selected module’s content</li>
+                <li>Shows only the logged-in user’s data (no cross-user visibility)</li>
+                <li>Dashboard contains KPI cards and graphs (as per UI)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <b>Important:</b> All account modules (ledger, reports, complaints, bookings) are visible only after login and are restricted to the current user.
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        10) MY PROFILE
+      ======================================================= -->
+      <section class="section" id="my-profile">
+        <div class="head">
+          <div>
+            <h3>10) My Profile (My Account → My Profile)</h3>
+            <div class="sub">User profile management rules and field behavior.</div>
+          </div>
+          <span class="pill">Form</span>
+        </div>
+
+        <div class="body">
+          <div class="card">
+            <h4>My Profile — Fields &amp; Rules</h4>
+            <ul class="list">
+              <li><b>First Name</b></li>
+              <li><b>Last Name</b></li>
+              <li><b>Email</b> — fixed if the user logged in using email OTP</li>
+              <li><b>Mobile</b> — fixed if the user logged in using mobile OTP</li>
+              <li><b>Address</b>, <b>City</b>, <b>State</b>, <b>Pincode</b></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        11) MY BOOKING
+      ======================================================= -->
+      <section class="section" id="my-booking">
+        <div class="head">
+          <div>
+            <h3>11) My Booking (My Account → My Booking)</h3>
+            <div class="sub">Service-wise booking management with trip-type tabs, cancellation handling, and ticket downloads.</div>
           </div>
           <span class="pill">Travel</span>
         </div>
+
         <div class="body">
-          <div class="grid3">
-            <div class="card"><h4>Flights</h4><p class="muted">Route/dates/pax → airline listing → fare rules → booking.</p></div>
-            <div class="card"><h4>Bus</h4><p class="muted">Route/date → operator listing → seat selection → booking.</p></div>
-            <div class="card"><h4>Hotels</h4><p class="muted">City/dates/rooms → hotel listing → room selection → booking.</p></div>
+          <div class="grid2">
+            <div class="card">
+              <h4>Left Panel — Service Selector</h4>
+              <ul class="list">
+                <li>Flight</li>
+                <li>Bus</li>
+                <li>Hotels</li>
+                <li>Train</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>Top Tabs — Trip Types</h4>
+              <ul class="list">
+                <li><b>Upcoming</b> — all upcoming trips for the selected service</li>
+                <li><b>Cancelled/Refunded</b> — all cancelled and refunded trips</li>
+                <li><b>Completed</b> — all completed trips</li>
+              </ul>
+            </div>
+          </div>
+
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title">
+                <span class="acc-dot"></span>
+                Upcoming Trips — Industrial-Level Cancellation Handling
+              </div>
+              <span class="acc-chip">Flow</span>
+            </summary>
+            <div class="acc-body">
+              <ul class="list">
+                <li>This section allows the user to select trips and raise cancellation requests (where cancellation is permitted).</li>
+                <li>Before initiating cancellation, clearly show whether the trip is cancellable and display all relevant terms and conditions.</li>
+                <li>Show refund estimation in advance: clearly state the expected refund amount if the trip is cancelled.</li>
+                <li>Display booking details including booking reference/PNR, route, travel date, fare, and refund breakup.</li>
+                <li>Provide ticket actions: <b>Download E-ticket</b> and/or <b>View Ticket</b> within booking details.</li>
+              </ul>
+
+              <div class="callout" style="margin-top:10px;">
+                <b>Refund breakup format:</b> Refund Amount − Service Charge − GST (and any configured cancellation charges, if applicable).
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <div class="acc-title">
+                <span class="acc-dot"></span>
+                Filters &amp; Search (Visible to User)
+              </div>
+              <span class="acc-chip">UX</span>
+            </summary>
+            <div class="acc-body">
+              <ul class="list">
+                <li>Date range filters</li>
+                <li>Service filters (Flight/Bus/Hotel/Train)</li>
+                <li>Status filters (Upcoming/Cancelled/Completed)</li>
+                <li>Search by Booking Reference / PNR / route and related identifiers</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — My Booking (Service + Tabs)</b>
+              <span>Service selection → Trip tabs → Actions</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node"><div class="t">Select Service <span class="badge">Left Panel</span></div><div class="d">User selects Flight/Bus/Hotel/Train.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Select Trip Tab <span class="badge">Tabs</span></div><div class="d">Upcoming / Cancelled-Refunded / Completed.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Booking Actions <span class="badge g">Manage</span></div><div class="d">View details, Download/View ticket, and raise cancellation where allowed.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================
+        12) DASHBOARD
+      ======================================================= -->
+      <section class="section" id="my-account-dashboard">
+        <div class="head">
+          <div>
+            <h3>12) Dashboard (My Account → Dashboard)</h3>
+            <div class="sub">User KPIs and graphs for transaction visibility.</div>
+          </div>
+          <span class="pill">KPIs</span>
+        </div>
+
+        <div class="body">
+          <div class="card">
+            <h4>Dashboard KPIs</h4>
+            <ul class="list">
+              <li><b>Total Transactions</b></li>
+              <li><b>Wallet Balance</b></li>
+              <li><b>Pending Complaints</b></li>
+              <li>Additional allowed metrics: recent transactions summary, upcoming travel count, service-wise breakdown</li>
+              <li><b>Graphs</b> for transactions (monthly overview and service-wise distribution)</li>
+            </ul>
           </div>
 
           <div class="diagram">
             <div class="lane-title">
-              <b>Diagram — Travel Booking</b>
-              <span>Login gate at payment</span>
+              <b>Diagram — Dashboard Layout</b>
+              <span>KPI cards → graphs → quick access</span>
             </div>
             <div class="flow">
               <div class="flow-row">
-                <div class="node"><div class="t">Search <span class="badge">Input</span></div><div class="d">User enters criteria and searches availability.</div></div>
+                <div class="node"><div class="t">KPI Cards <span class="badge">Top</span></div><div class="d">Total transactions, wallet balance, pending complaints, etc.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Listing <span class="badge">Compare</span></div><div class="d">Filters + sorting + transparent price and fare rules preview.</div></div>
+                <div class="node"><div class="t">Graphs <span class="badge">Chart</span></div><div class="d">Monthly overview + service-wise distribution.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Details <span class="badge">Policy</span></div><div class="d">Show itinerary/amenities + cancellation/refund rules + breakdown.</div></div>
-                <div class="arrow">→</div>
-                <div class="node"><div class="t">Traveller Details <span class="badge">Form</span></div><div class="d">Collect passenger details; allow saving travellers.</div></div>
+                <div class="node"><div class="t">Quick Links <span class="badge">Jump</span></div><div class="d">Shortcuts to Ledger, Reports, Complaints, and Bookings.</div></div>
               </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================
+        13) WALLET LEDGER
+      ======================================================= -->
+      <section class="section" id="wallet-ledger">
+        <div class="head">
+          <div>
+            <h3>13) Wallet Ledger (My Account → Wallet Ledger)</h3>
+            <div class="sub">Wallet and transaction ledger for the logged-in user.</div>
+          </div>
+          <span class="pill">Ledger</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Wallet Ledger — Overview</div>
+              <span class="acc-chip">Core</span>
+            </summary>
+            <div class="acc-body">
+              <ul class="list">
+                <li>Shows wallet balance and allows top-up from anywhere.</li>
+                <li>Wallet top-up is completed using the payment gateway.</li>
+                <li>On wallet click, show: Consumable Balance, Hold Balance, and Total Balance.</li>
+              </ul>
+              <p class="muted" style="margin-top:8px;">
+                Example: Consumable balance = <b>18,808.19</b> + Hold balance = <b>300</b> = total balance = <b>19,108.19</b>
+              </p>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Ledger Listing — Fields</div>
+              <span class="acc-chip">Table</span>
+            </summary>
+            <div class="acc-body">
+              <ul class="list">
+                <li><b>Ledger ID</b>: Tracks each ledger entry with date and time</li>
+                <li><b>User</b>: Mobile/email used for login and the generated user ID</li>
+                <li><b>Type</b>: SPEND / LOAD / BONUS / REFUNDED</li>
+                <li><b>Service</b>: Wallet transfer, refund deposit, cancellation, BBPS (Electricity: BSES, Water: DJB), Flight, Bus, etc.</li>
+                <li><b>Amount</b>: Transaction amount with opening and closing balance</li>
+                <li><b>Reference Number</b>: Transaction reference identifier</li>
+                <li><b>Action</b>: View → shows transaction details and charge breakup</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        14) UTILITY TRANSACTIONS REPORT
+      ======================================================= -->
+      <section class="section" id="utility-transactions-report">
+        <div class="head">
+          <div>
+            <h3>14) Utility Transactions (My Account → Utility Transactions)</h3>
+            <div class="sub">Utility-only transactions. Travel data is not shown here.</div>
+          </div>
+          <span class="pill">Report</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Utility Transactions Report</div>
+              <span class="acc-chip">BRD</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Utility Transactions Report</b> displays all <b>utility-related transactions</b> (BBPS, Mobile Recharge, DTH Recharge)
+                performed by the <b>logged-in user</b>. Only the transactions belonging to the current user are visible.
+                The report allows users to review transaction details and <b>raise complaints directly against a specific transaction</b>.
+              </p>
+
+              <h4 class="mini">Filters &amp; Search</h4>
+              <ul class="list">
+                <li><b>From Date / To Date</b> — Filter transactions by date range</li>
+                <li><b>No. of Records</b> — Limit number of results displayed</li>
+                <li><b>Search (Txn / Mobile / Name)</b> — Search using Transaction ID, registered mobile number, or user name</li>
+                <li><b>Service Filter</b> — All / BBPS / Mobile &amp; DTH</li>
+                <li><b>Status Filter</b> — All / Success / Pending / Failed</li>
+                <li><b>Actions</b> — Search, Reset, Export</li>
+              </ul>
+
+              <h4 class="mini">Transaction Listing</h4>
+              <ul class="list">
+                <li><b>Transaction ID</b> and <b>Reference ID</b></li>
+                <li><b>User Details</b> — Mobile number and user name (logged-in user)</li>
+                <li><b>Service Details</b> — Service category and bill/recharge type</li>
+                <li><b>Operator / Biller</b> — Name and operator code</li>
+                <li><b>Amount</b> — Transaction amount with service fee and GST breakup</li>
+                <li><b>Status</b> — Success / Pending / Failed</li>
+                <li><b>Date &amp; Time</b> of transaction</li>
+                <li><b>Actions (Three-Dot Menu)</b>:
+                  <ul class="list">
+                    <li><b>View</b> — Opens transaction detail view</li>
+                    <li><b>Raise Complaint</b> — Allows the user to initiate a complaint for the selected transaction</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h4 class="mini">Raise Complaint</h4>
+              <ul class="list">
+                <li><b>Subject</b></li>
+                <li><b>Description</b></li>
+                <li><b>Attachment(s)</b> (if required)</li>
+              </ul>
+              <p class="muted">The submitted complaint is mapped to the selected transaction and becomes visible in the Complaint/Support section.</p>
+
+              <h4 class="mini">Transaction Details View</h4>
+              <ul class="list">
+                <li><b>Transaction Summary</b> — Status, service, amount, date, and time</li>
+                <li><b>Transaction Data</b> — Transaction ID, reference ID, operator/biller</li>
+                <li><b>Charges Breakdown</b> — Amount, service charge, GST, total</li>
+                <li><b>System Information</b> — Transaction remarks and related metadata</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        15) TRAVEL TRANSACTIONS REPORT
+      ======================================================= -->
+      <section class="section" id="travel-transactions-report">
+        <div class="head">
+          <div>
+            <h3>15) Travel Transactions (My Account → Travel Transactions)</h3>
+            <div class="sub">Travel-only bookings for the logged-in user, including ticket download.</div>
+          </div>
+          <span class="pill">Report</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Travel Transactions Report</div>
+              <span class="acc-chip">BRD</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Travel Transactions Report</b> displays all <b>travel-related bookings</b> made by the <b>logged-in user</b>,
+                including <b>Air, Bus, and Hotel</b> services. The report provides end-to-end visibility of bookings, transaction status,
+                charges, and booking details. Only the transactions related to the currently logged-in user are visible.
+              </p>
+
+              <h4 class="mini">Filters &amp; Search</h4>
+              <ul class="list">
+                <li><b>From Date / To Date</b> — Filter travel transactions by booking date</li>
+                <li><b>No. of Records</b> — Limit number of results displayed</li>
+                <li><b>Search (Txn / Mobile / Name)</b> — Search using Transaction ID, booking reference, or user details</li>
+                <li><b>Service Filter</b> — All / Air / Bus / Hotel</li>
+                <li><b>Status Filter</b> — All / Success / Pending / Failed</li>
+                <li><b>Actions</b> — Search, Reset, Export</li>
+              </ul>
+
+              <h4 class="mini">Transaction Listing</h4>
+              <ul class="list">
+                <li><b>Transaction ID</b> and <b>Reference ID</b></li>
+                <li><b>Booking Reference</b> (PNR / Booking ID)</li>
+                <li><b>User Details</b> — Registered mobile number and name (logged-in user)</li>
+                <li><b>Service Details</b> — Air / Bus / Hotel with booking type</li>
+                <li><b>Operator / Provider</b> — Airline, bus operator, or hotel name with code</li>
+                <li><b>Amount</b> — Booking amount with service fee and GST breakup</li>
+                <li><b>Status</b> — Success / Pending / Failed</li>
+                <li><b>Date &amp; Time</b> of transaction</li>
+                <li><b>Actions Menu</b>:
+                  <ul class="list">
+                    <li><b>View TXN Details</b> — Opens transaction detail panel</li>
+                    <li><b>View Booking History</b> — Opens booking summary panel</li>
+                    <li><b>Download Receipt (Ticket)</b> — Downloads the booking <b>ticket/receipt</b> for the selected transaction</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h4 class="mini">Transaction Details View</h4>
+              <ul class="list">
+                <li><b>User Information</b> — Name and mobile number</li>
+                <li><b>Transaction Summary</b> — Status, service type, amount, date, and time</li>
+                <li><b>Transaction Data</b> — Transaction number, reference ID, operator/provider</li>
+                <li><b>Charges Breakdown</b> — Amount, service charge, GST, and total</li>
+                <li><b>System Information</b> — IP address and transaction remarks</li>
+              </ul>
+
+              <h4 class="mini">Booking History View</h4>
+              <ul class="list">
+                <li><b>Booking Summary</b> — PNR / Booking ID, booking status</li>
+                <li><b>Route / Location Details</b> — Origin and destination (for travel)</li>
+                <li><b>Operator Details</b> — Airline or bus operator</li>
+                <li><b>Travel Date &amp; Duration</b></li>
+                <li><b>Passenger Details</b> — Name, ticket number, ticket status, fare, baggage allowance</li>
+                <li><b>Primary Ticket Action</b> — Provide <b>Download E-ticket / Receipt (PDF)</b> within booking history view for visibility</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        16) MY COMPLAINT
+      ======================================================= -->
+      <section class="section" id="complaint-ticket-tracker">
+        <div class="head">
+          <div>
+            <h3>16) My Complaint (My Account → My Complaint)</h3>
+            <div class="sub">Ticket tracker for complaints raised by the logged-in user.</div>
+          </div>
+          <span class="pill">Support</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Complaint / Ticket Tracker</div>
+              <span class="acc-chip">BRD</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Complaint / Ticket Tracker</b> allows the logged-in user to <b>track, communicate, and follow up</b> on complaints
+                raised against transactions or services. Only tickets created by the current user are visible.
+              </p>
+
+              <h4 class="mini">Filters &amp; Search</h4>
+              <ul class="list">
+                <li><b>Ticket Number</b> — Search using complaint ticket number</li>
+                <li><b>Service Name</b> — Filter tickets by service (e.g., Utility, Travel)</li>
+                <li><b>Status Filter</b> — All / Open / In-Progress / Resolved / Closed</li>
+                <li><b>Created Date</b> — Filter tickets by creation date</li>
+                <li><b>Search</b> — Loads tickets based on applied filters</li>
+              </ul>
+
+              <h4 class="mini">Ticket Listing</h4>
+              <ul class="list">
+                <li><b>Complaint ID</b></li>
+                <li><b>Ticket Number</b></li>
+                <li><b>Service Name</b></li>
+                <li><b>Subject</b></li>
+                <li><b>Status</b> — Open / In-Progress / Resolved / Closed</li>
+                <li><b>Created Date &amp; Time</b></li>
+                <li><b>Actions</b> — View Chat</li>
+              </ul>
+
+              <h4 class="mini">Ticket Chat (Conversation View)</h4>
+              <ul class="list">
+                <li><b>Ticket Reference</b></li>
+                <li><b>Message Thread</b> showing user messages and support/admin responses with timestamps</li>
+                <li><b>Message Input Box</b> + send action</li>
+              </ul>
+
+              <h4 class="mini">Ticket Lifecycle</h4>
+              <ul class="list">
+                <li><b>Open</b> — Ticket created by user, pending action</li>
+                <li><b>In-Progress</b> — Ticket under review or being worked on</li>
+                <li><b>Resolved</b> — Issue addressed, awaiting closure</li>
+                <li><b>Closed</b> — Ticket finalized and closed</li>
+              </ul>
+
+              <h4 class="mini">Business Purpose</h4>
+              <ul class="list">
+                <li>Enables users to <b>track complaint status</b></li>
+                <li>Provides a <b>single communication thread</b> per ticket</li>
+                <li>Maintains a complete <b>audit trail</b> for resolution history</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        17) CANCELLATION REPORT
+      ======================================================= -->
+      <section class="section" id="booking-cancellation-report">
+        <div class="head">
+          <div>
+            <h3>17) Cancellation Report (My Account → Cancellation Report)</h3>
+            <div class="sub">Tracks cancellation requests raised by the logged-in user.</div>
+          </div>
+          <span class="pill">Cancel</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Booking Cancellation Report</div>
+              <span class="acc-chip">BRD</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Booking Cancellation Report</b> allows the <b>logged-in user</b> to track and manage all
+                <b>booking cancellation requests</b> raised for travel services. Only the cancellation requests initiated by
+                the current user are visible in this report.
+              </p>
+
+              <h4 class="mini">Summary Counters</h4>
+              <ul class="list">
+                <li><b>Total</b> — Total number of cancellation requests raised by the user</li>
+                <li><b>Pending</b> — Requests awaiting approval</li>
+                <li><b>Approved</b> — Requests approved and processed</li>
+                <li><b>Rejected</b> — Requests rejected</li>
+              </ul>
+
+              <h4 class="mini">Filters &amp; Search</h4>
+              <ul class="list">
+                <li><b>Service Type</b> — Bus / Air / Hotel</li>
+                <li><b>User</b> — Auto-selected as the logged-in user</li>
+                <li><b>Status</b> — Initiated / Completed / Rejected</li>
+                <li><b>Search By</b> — All / Booking Ref / PNR / From City / To City</li>
+                <li><b>From Date / To Date</b></li>
+                <li><b>Search</b>, <b>Reset</b></li>
+              </ul>
+
+              <h4 class="mini">Cancellation Listing</h4>
+              <ul class="list">
+                <li>Booking Reference, PNR, User ID</li>
+                <li>Route Details (From City, To City)</li>
+                <li>Travel Date, Fare Amount, Refund Amount</li>
+                <li>Refund Status (Initiated / Completed / Rejected)</li>
+                <li>Admin Remarks</li>
+              </ul>
+
+              <h4 class="mini">Report Purpose</h4>
+              <ul class="list">
+                <li>Track cancellation request status</li>
+                <li>Visibility into refund amounts and processing state</li>
+                <li>System/admin remarks for transparency</li>
+                <li>History of cancellation activity</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        18) UTILITY COMPLAINT REPORT
+      ======================================================= -->
+      <section class="section" id="utility-complaint-report">
+        <div class="head">
+          <div>
+            <h3>18) Utility Complaint Report (My Account → Utility Complaint Report)</h3>
+            <div class="sub">Closed complaints + refund details visible only if the refund is approved.</div>
+          </div>
+          <span class="pill">Closed</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Utility Complaint Report</div>
+              <span class="acc-chip">BRD</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Utility Complaint Report</b> displays all <b>closed utility-related complaints</b> raised by the logged-in user.
+                This report allows users to review complaint outcomes, view full complaint history, and access refund details where applicable.
+                Only complaints associated with the current user are visible.
+              </p>
+
+              <h4 class="mini">Filters &amp; Search</h4>
+              <ul class="list">
+                <li><b>Search (User / Service / Ticket)</b></li>
+                <li><b>No. of Records</b></li>
+                <li><b>Actions</b> — Reset, Export</li>
+              </ul>
+
+              <h4 class="mini">Complaint Listing</h4>
+              <ul class="list">
+                <li>Ticket Number, User ID, Service Name</li>
+                <li>Priority (High/Medium)</li>
+                <li>Status (Closed)</li>
+                <li>Action (View)</li>
+              </ul>
+
+              <h4 class="mini">Complaint History (View)</h4>
+              <ul class="list">
+                <li>User Information (User ID), Service Name, Priority</li>
+                <li>Complaint Status</li>
+                <li>Last Action (final status update with date &amp; time)</li>
+                <li>Last Comment (latest system/admin remark)</li>
+              </ul>
+
+              <h4 class="mini">Transaction Details (Within Complaint History)</h4>
+              <ul class="list">
+                <li>Transaction ID, Transaction Number, Service Type</li>
+                <li>Amount Details (debit amount + affected reference)</li>
+                <li>Remarks (resolution summary)</li>
+              </ul>
+
+              <h4 class="mini">Complaint Timeline</h4>
+              <ul class="list">
+                <li>Ticket Created → In Progress → Dispute (if applicable) → Closed</li>
+              </ul>
+
+              <h4 class="mini">View Refund Details</h4>
+              <ul class="list">
+                <li><b>View Refund Details</b> is displayed <b>only when the complaint refund is approved</b>.</li>
+                <li>Shows: Transfer From/To, Refund Amount, Date &amp; Time, Type, Reference ID, Refund Remarks, and confirmation message.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        19) TRAVEL FLOW
+      ======================================================= -->
+      <section class="section" id="travel">
+        <div class="head">
+          <div>
+            <h3>19) Travel Flow (Flight / Bus / Hotel / Train)</h3>
+            <div class="sub">Search → Listing → Filters → Details → Traveller → Seat Selection (Bus) → Login Gate → Payment → Confirmation</div>
+          </div>
+          <span class="pill">Flow</span>
+        </div>
+
+        <div class="body">
+          <div class="grid3">
+            <div class="card"><h4>Flights</h4><p class="muted">Route/dates/passengers → listing → filters → details → traveller → payment → confirmation.</p></div>
+            <div class="card"><h4>Bus</h4><p class="muted">Route/date → listing → filters → seat selection → traveller → payment → confirmation.</p></div>
+            <div class="card"><h4>Hotels / Train</h4><p class="muted">Search → listing → details → traveller (if required) → payment → confirmation.</p></div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Travel Booking Flow</b>
+              <span>Includes search, filters, seat selection, and login gate</span>
+            </div>
+            <div class="flow">
               <div class="flow-row">
-                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If not logged in, OTP login; return to payment step.</div></div>
+                <div class="node"><div class="t">Search <span class="badge">Input</span></div><div class="d">User enters route/date/passengers and searches availability.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Wallet sufficient or top-up shortfall; PG always available.</div></div>
+                <div class="node"><div class="t">Listing <span class="badge">Compare</span></div><div class="d">Results list with sorting and transparent pricing.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Confirmation <span class="badge g">Voucher</span></div><div class="d">Booking ID + download/share + “My Bookings”.</div></div>
+                <div class="node"><div class="t">Filters <span class="badge">Refine</span></div><div class="d">Apply Flight/Bus filters (see Filters section).</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Details <span class="badge">Policy</span></div><div class="d">Fare rules, cancellation/refund rules, and charge breakdown.</div></div>
               </div>
+
+              <div class="flow-row">
+                <div class="node"><div class="t">Traveller Details <span class="badge">Form</span></div><div class="d">Collect passenger details with validation and saved traveller support (if applicable).</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Seat Selection (Bus) <span class="badge w">Seat</span></div><div class="d">Seat map selection with legend and fare updates (Bus only).</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If guest, OTP login is required; after success, return to payment.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Payment &amp; Confirmation <span class="badge g">Ticket</span></div><div class="d">Wallet/PG → confirmation → ticket download/view in history.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================
+        20) TRAVEL SEARCH (FLIGHT + BUS)
+      ======================================================= -->
+      <section class="section" id="travel-search">
+        <div class="head">
+          <div>
+            <h3>20) Flight Search &amp; Bus Search</h3>
+            <div class="sub">Search inputs and expected behavior.</div>
+          </div>
+          <span class="pill">Search</span>
+        </div>
+
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Flight Search — Inputs</h4>
+              <ul class="list">
+                <li>Trip Type: One-way / Round-trip (if applicable)</li>
+                <li>From (city/airport)</li>
+                <li>To (city/airport)</li>
+                <li>Travel Date (and return date if round-trip)</li>
+                <li>Passengers (Adults/Children/Infants)</li>
+                <li>Class (if applicable)</li>
+                <li>Search button</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>Bus Search — Inputs</h4>
+              <ul class="list">
+                <li>From city</li>
+                <li>To city</li>
+                <li>Journey Date</li>
+                <li>Search button</li>
+                <li>On results: filters, boarding/dropping selection, and seat selection</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- UTILITY -->
+      <!-- ======================================================
+        21) TRAVEL FILTERS
+      ======================================================= -->
+      <section class="section" id="travel-filters">
+        <div class="head">
+          <div>
+            <h3>21) Flight Filters &amp; Bus Filters</h3>
+            <div class="sub">Filters to refine search results.</div>
+          </div>
+          <span class="pill">Filters</span>
+        </div>
+
+        <div class="body">
+          <details class="acc" open>
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Flight Filters (Summary)</div>
+              <span class="acc-chip">Flight</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Flight Filters</b> allow users to refine flight search results based on <b>flight type</b>,
+                <b>departure time</b>, and <b>airline preference</b>.
+              </p>
+
+              <ul class="list">
+                <li><b>Flight Type</b>
+                  <ul class="list">
+                    <li>Non-Stop</li>
+                    <li>Stop</li>
+                  </ul>
+                  Used to filter direct vs connecting flights.
+                </li>
+
+                <li><b>Departure Time</b>
+                  <ul class="list">
+                    <li>Before 6 AM</li>
+                    <li>6 AM – 12 PM</li>
+                    <li>12 PM – 6 PM</li>
+                    <li>After 6 PM</li>
+                  </ul>
+                  Enables time-based filtering of departures.
+                </li>
+
+                <li><b>Choose Airlines</b>
+                  <ul class="list">
+                    <li>Select one or multiple airlines (e.g., Indigo, Air India, SpiceJet, Akasa Air)</li>
+                  </ul>
+                  Allows filtering results by preferred airline operators.
+                </li>
+              </ul>
+
+              <p class="muted" style="margin-top:8px;">Each filter can be applied to narrow results and display matching flights.</p>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>
+              <div class="acc-title"><span class="acc-dot"></span> Bus Filters (Summary)</div>
+              <span class="acc-chip">Bus</span>
+            </summary>
+            <div class="acc-body">
+              <p class="muted">
+                The <b>Bus Filters</b> allow users to narrow down bus search results based on <b>bus type</b>,
+                <b>departure time</b>, <b>operator</b>, <b>boarding point</b>, and <b>dropping point</b>.
+              </p>
+
+              <ul class="list">
+                <li><b>Bus Type</b>
+                  <ul class="list">
+                    <li>AC</li>
+                    <li>Non-AC</li>
+                  </ul>
+                  Filters buses by air-conditioning preference.
+                </li>
+
+                <li><b>Departure Time</b>
+                  <ul class="list">
+                    <li>Before 6 AM</li>
+                    <li>6 AM – 12 PM</li>
+                    <li>12 PM – 6 PM</li>
+                    <li>After 6 PM</li>
+                  </ul>
+                  Filters buses by scheduled departure time.
+                </li>
+
+                <li><b>Bus Operator</b> — Select one or multiple operators</li>
+                <li><b>Boarding Point</b> — Select boarding locations</li>
+                <li><b>Dropping Point</b> — Select dropping locations</li>
+              </ul>
+
+              <p class="muted" style="margin-top:8px;">These filters help users quickly find buses that match comfort, timing, and location preferences.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================================================
+        22) SEAT SELECTION (BUS)
+      ======================================================= -->
+      <section class="section" id="travel-seat-selection">
+        <div class="head">
+          <div>
+            <h3>22) Bus Seat Selection Flow</h3>
+            <div class="sub">Seat map interaction requirements for bus bookings.</div>
+          </div>
+          <span class="pill">Bus</span>
+        </div>
+
+        <div class="body">
+          <div class="grid2">
+            <div class="card">
+              <h4>Seat Map Requirements</h4>
+              <ul class="list">
+                <li>Legend: Available / Selected / Booked / Ladies (if applicable)</li>
+                <li>Upper/Lower deck toggle (if applicable)</li>
+                <li>Seat number + type + price changes (if any)</li>
+                <li>Selection summary: seat numbers + total amount</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h4>Seat Actions</h4>
+              <ul class="list">
+                <li>Select seat(s) → update fare instantly</li>
+                <li>Deselect seat(s) → update summary</li>
+                <li>Continue → traveller/payment steps</li>
+                <li>Optional: temporary seat-hold timer</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="diagram">
+            <div class="lane-title">
+              <b>Diagram — Seat Selection</b>
+              <span>Bus booking step</span>
+            </div>
+            <div class="flow">
+              <div class="flow-row">
+                <div class="node"><div class="t">Open Seat Map <span class="badge">Map</span></div><div class="d">Show layout, legend, and boarding/dropping details.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Select Seats <span class="badge w">Select</span></div><div class="d">Choose seats; update selection list and total amount.</div></div>
+                <div class="arrow">→</div>
+                <div class="node"><div class="t">Continue <span class="badge g">Next</span></div><div class="d">Proceed to traveller details and payment.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================
+        23) UTILITY FLOW
+      ======================================================= -->
       <section class="section" id="utility">
         <div class="head">
           <div>
-            <h3>9) Recharge & Utility — Flow</h3>
+            <h3>23) Recharge &amp; Utility Flow</h3>
             <div class="sub">Service → Input → Bill/Plan → Review → Login Gate → Payment → Receipt → Pending handling</div>
           </div>
-          <span class="pill">Utility</span>
+          <span class="pill">Flow</span>
         </div>
+
         <div class="body">
           <div class="grid3">
-            <div class="card"><h4>Recharge</h4><p class="muted">Mobile / DTH. Operator detection + plan selection (optional).</p></div>
+            <div class="card"><h4>Recharge</h4><p class="muted">Mobile/DTH. Operator detection + plan selection (optional).</p></div>
             <div class="card"><h4>BBPS Utility</h4><p class="muted">Electricity/Gas/Water. Bill fetch required before payment.</p></div>
-            <div class="card"><h4>Receipts</h4><p class="muted">Txn ID + operator ref + status + share/download + history.</p></div>
+            <div class="card"><h4>Receipts</h4><p class="muted">Txn ID + operator ref + status + share/download + history entry.</p></div>
           </div>
 
           <div class="diagram">
             <div class="lane-title">
               <b>Diagram — Utility Transaction</b>
-              <span>Pending status is mandatory</span>
+              <span>Pending handling is mandatory</span>
             </div>
             <div class="flow">
               <div class="flow-row">
-                <div class="node"><div class="t">Choose Service <span class="badge">Select</span></div><div class="d">User chooses Mobile/DTH/BBPS etc.</div></div>
+                <div class="node"><div class="t">Choose Service <span class="badge">Select</span></div><div class="d">Mobile/DTH/BBPS, etc.</div></div>
                 <div class="arrow">→</div>
                 <div class="node"><div class="t">Enter Details <span class="badge">Input</span></div><div class="d">Number/consumer ID + operator selection + validation.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Fetch Bill/Plan <span class="badge">BBPS</span></div><div class="d">For billers: fetch amount, due date, customer name.</div></div>
+                <div class="node"><div class="t">Fetch Bill/Plan <span class="badge">BBPS</span></div><div class="d">Fetch amount/due date/customer name (where applicable).</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Review <span class="badge">Confirm</span></div><div class="d">Show summary + fees + payable amount.</div></div>
+                <div class="node"><div class="t">Review <span class="badge">Confirm</span></div><div class="d">Summary + fees + total payable amount.</div></div>
               </div>
+
               <div class="flow-row">
-                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If not logged in, OTP login. Return to payment step.</div></div>
+                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If guest → OTP login → return to payment.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Same payment component and wallet shortfall rules.</div></div>
+                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Universal payment component with wallet shortfall handling.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Receipt <span class="badge g">Success</span></div><div class="d">Success/pending/failed + reference IDs + history entry.</div></div>
+                <div class="node"><div class="t">Receipt <span class="badge g">Status</span></div><div class="d">Success/Pending/Failed with reference IDs and history entry.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Pending Handling <span class="badge w">Status</span></div><div class="d">Auto-refresh + “Check Status”. On final failure → auto-refund to wallet.</div></div>
+                <div class="node"><div class="t">Pending Handling <span class="badge w">Check</span></div><div class="d">Auto refresh + “Check Status”. If final failure → auto-refund to wallet.</div></div>
               </div>
             </div>
           </div>
 
           <div class="callout">
-            <b>Rule:</b> If payment succeeds but operator confirmation is delayed, show <b>Pending</b> with status check and do not double charge.
+            <b>Rule:</b> If payment succeeds but operator confirmation is delayed, show <b>Pending</b> with status check and prevent double charging.
           </div>
         </div>
       </section>
 
-      <!-- E-COMMERCE -->
+      <!-- ======================================================
+        24) E-COMMERCE FLOW
+      ======================================================= -->
       <section class="section" id="ecommerce">
         <div class="head">
           <div>
-            <h3>10) E-commerce (Default Module) — Flow</h3>
+            <h3>24) E-commerce Flow (Default Landing)</h3>
             <div class="sub">Browse → PDP → Cart → Address → Login Gate → Payment → Order Confirmation</div>
           </div>
           <span class="pill">Default</span>
         </div>
+
         <div class="body">
           <div class="grid3">
-            <div class="card"><h4>Catalog</h4><p class="muted">Categories, search, filters, product cards with pricing.</p></div>
-            <div class="card"><h4>PDP</h4><p class="muted">Images, variants, delivery ETA, return policy, add to cart.</p></div>
-            <div class="card"><h4>Orders</h4><p class="muted">Order ID, tracking, invoice, returns/refunds (wallet default).</p></div>
+            <div class="card"><h4>Catalog</h4><p class="muted">Categories, search, filters, and product cards with pricing.</p></div>
+            <div class="card"><h4>PDP</h4><p class="muted">Images, variants, delivery ETA, return policy, and add to cart.</p></div>
+            <div class="card"><h4>Orders</h4><p class="muted">Order ID, tracking, invoice, and returns/refunds (wallet default, policy-based).</p></div>
           </div>
 
           <div class="diagram">
             <div class="lane-title">
-              <b>Diagram — E-commerce Order Journey</b>
-              <span>Default landing module</span>
+              <b>Diagram — E-commerce Journey</b>
+              <span>Default module</span>
             </div>
             <div class="flow">
               <div class="flow-row">
-                <div class="node"><div class="t">Home (Default) <span class="badge">Landing</span></div><div class="d">User lands on e-commerce home: banners + categories + featured.</div></div>
+                <div class="node"><div class="t">Home <span class="badge">Landing</span></div><div class="d">Banners + categories + featured products.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">PDP <span class="badge">Details</span></div><div class="d">Select variant, view policies, add to cart.</div></div>
+                <div class="node"><div class="t">PDP <span class="badge">Details</span></div><div class="d">Variant selection + policy details + add to cart.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Cart <span class="badge">Review</span></div><div class="d">Qty updates, coupon (optional), final total.</div></div>
+                <div class="node"><div class="t">Cart <span class="badge">Review</span></div><div class="d">Quantity updates + totals + proceed to checkout.</div></div>
                 <div class="arrow">→</div>
                 <div class="node"><div class="t">Checkout <span class="badge">Address</span></div><div class="d">Select/add address + contact details.</div></div>
               </div>
+
               <div class="flow-row">
-                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If not logged in → OTP login → return to payment.</div></div>
+                <div class="node"><div class="t">Login Gate <span class="badge w">OTP</span></div><div class="d">If guest → OTP login → return to payment.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Universal payment component used here.</div></div>
+                <div class="node"><div class="t">Payment <span class="badge">Wallet/PG</span></div><div class="d">Universal payment component.</div></div>
                 <div class="arrow">→</div>
-                <div class="node"><div class="t">Order Confirm <span class="badge g">Order ID</span></div><div class="d">Order ID + tracking + invoice + “My Orders”.</div></div>
+                <div class="node"><div class="t">Order Confirmation <span class="badge g">Order ID</span></div><div class="d">Order ID + tracking + invoice + My Orders entry.</div></div>
               </div>
             </div>
           </div>
 
           <div class="callout">
-            <b>Refund recommendation:</b> For returns/cancellations, default refund destination should be <b>wallet</b> for faster settlement (policy-based).
+            <b>Refund recommendation:</b> For returns/cancellations, default the refund destination to <b>wallet</b> for faster settlement (policy-based).
           </div>
         </div>
       </section>
 
-      <!-- STATES -->
+      <!-- ======================================================
+        25) UX STATES & ERRORS
+      ======================================================= -->
       <section class="section" id="states-errors">
         <div class="head">
           <div>
-            <h3>11) UX States & Error Handling</h3>
-            <div class="sub">Required for premium-grade consumer product.</div>
+            <h3>25) UX States &amp; Error Handling</h3>
+            <div class="sub">Required for a premium-grade consumer experience.</div>
           </div>
           <span class="pill">UX</span>
         </div>
+
         <div class="body">
           <div class="grid2">
             <div class="card">
@@ -638,88 +1599,97 @@
                   </tr>
                   <tr>
                     <td><b>Pending</b></td>
-                    <td class="muted">Status tracking + “Check status” button</td>
+                    <td class="muted">Status tracking + “Check Status” button</td>
                     <td><span class="req warn">Check</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
             <div class="card">
               <h4>Payment Safety Rules</h4>
               <ul class="list">
-                <li>Prevent double-charging using reference IDs</li>
-                <li>On failure after debit: auto-refund to wallet</li>
+                <li>Prevent double charging using reference IDs</li>
+                <li>On failure after debit: auto-refund to wallet (policy-based)</li>
                 <li>On pending: show progress + status checks</li>
-                <li>Always show support CTA on payment screens</li>
+                <li>Always show a support CTA on payment screens</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- NFR -->
+      <!-- ======================================================
+        26) NFR
+      ======================================================= -->
       <section class="section" id="non-functional">
         <div class="head">
           <div>
-            <h3>12) Non-Functional Requirements</h3>
-            <div class="sub">Design-level NFRs that influence UX.</div>
+            <h3>26) Non-Functional Requirements</h3>
+            <div class="sub">Non-functional requirements impacting UX and security.</div>
           </div>
           <span class="pill">NFR</span>
         </div>
+
         <div class="body">
           <div class="grid2">
             <div class="card">
               <h4>Performance</h4>
               <ul class="list">
                 <li>Lazy-load listings and images</li>
-                <li>Use skeleton loaders for perceived speed</li>
-                <li>Fast “resume payment” flow on refresh</li>
+                <li>Skeleton loaders for perceived speed</li>
+                <li>Fast resume of payment flow on refresh where applicable</li>
               </ul>
             </div>
             <div class="card">
               <h4>Security</h4>
               <ul class="list">
-                <li>OTP auth, secure sessions</li>
-                <li>Mask sensitive info</li>
-                <li>Transparent policy links before payment</li>
+                <li>OTP authentication and secure sessions</li>
+                <li>Mask sensitive information in UI where applicable</li>
+                <li>Show policy links and confirmations before payment</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- HANDOFF -->
+      <!-- ======================================================
+        27) FIGMA HANDOFF
+      ======================================================= -->
       <section class="section" id="handoff">
         <div class="head">
           <div>
-            <h3>13) Figma Handoff Checklist</h3>
-            <div class="sub">How the designer should structure the file.</div>
+            <h3>27) Figma Handoff Checklist</h3>
+            <div class="sub">Recommended structure for designer handoff.</div>
           </div>
           <span class="pill">Checklist</span>
         </div>
+
         <div class="body">
           <div class="card">
             <h4>Figma Pages (Suggested Naming)</h4>
             <ul class="list">
               <li><b>00 Foundations</b> — colors, typography, spacing, radii, shadows</li>
               <li><b>01 Components</b> — header, tabs, cards, forms, modals, payment component</li>
-              <li><b>02 E-commerce</b> — default home, PDP, cart, address, payment, order confirm</li>
-              <li><b>03 Travel</b> — home/search/listing/details/traveller/payment/confirm</li>
-              <li><b>04 Utility</b> — service grid/input/bill fetch/review/payment/receipt</li>
-              <li><b>05 Wallet & Profile</b> — wallet home/add funds/ledger + account + transaction center</li>
-              <li><b>06 System States</b> — loading/empty/error/pending templates</li>
+              <li><b>02 E-commerce</b> — home, PDP, cart, address, payment, order confirmation</li>
+              <li><b>03 Travel</b> — search, listing, filters, details, traveller, seat selection, payment, confirmation</li>
+              <li><b>04 Utility</b> — service grid, input, bill fetch, review, payment, receipt</li>
+              <li><b>05 My Account</b> — dashboard, wallet ledger, reports, complaints, booking, profile</li>
+              <li><b>06 System States</b> — loading, empty, error, pending templates</li>
             </ul>
           </div>
 
           <div class="callout">
-            <b>Critical:</b> Keep <b>one universal payment component</b> and reuse it everywhere (Travel/Utility/E-com).
+            <b>Critical:</b> Maintain <b>one universal payment component</b> and reuse it everywhere (Travel/Utility/E-commerce).
           </div>
         </div>
       </section>
 
-      <div class="foot">Full BRD HTML • Light UI • Flow diagrams • Stable scroll highlight</div>
+      <div class="foot">Full BRD • Light UI • Clear structure • Flow diagrams • Accordions for readability • Stable scroll highlight</div>
     </main>
   </div>
-<script src="assets/js/app.js"></script> 
+
+  <!-- Scripts -->
+  <script defer src="assets/js/app.js"></script>
 </body>
 </html>
